@@ -56,6 +56,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ291cnNlc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Admin/OneDrive - The University of Technology/Desktop/.NET PROJECT/QuanLyTrungTam/Views/Home/CourseEnrollments.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDb3Vyc2VFbnJvbGxtZW50cy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/OneDrive - The University of Technology/Desktop/.NET PROJECT/QuanLyTrungTam/Views/Home/CoursesForStudent.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDb3Vyc2VzRm9yU3R1ZGVudC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Admin/OneDrive - The University of Technology/Desktop/.NET PROJECT/QuanLyTrungTam/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -90,6 +98,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Admin/OneDrive - The University of Technology/Desktop/.NET PROJECT/QuanLyTrungTam/Views/Students/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudHNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/OneDrive - The University of Technology/Desktop/.NET PROJECT/QuanLyTrungTam/Views/Students/MyCourses.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudHNcTXlDb3Vyc2VzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Admin/OneDrive - The University of Technology/Desktop/.NET PROJECT/QuanLyTrungTam/Views/_ViewImports.cshtml]

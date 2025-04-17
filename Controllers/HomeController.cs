@@ -1,21 +1,26 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using QuanLyTrungTam.Models;
+using QuanLyTrungTam.Data;
+using QuanLyTrungTam.ViewModels;
 
 namespace QuanLyTrungTam.Controllers;
 
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
-
-    public HomeController(ILogger<HomeController> logger)
+    private readonly AppDbContext _context;
+    public HomeController(ILogger<HomeController> logger, AppDbContext context)
     {
         _logger = logger;
+        _context = context;
     }
 
     public IActionResult Index()
     {
-        return View();
+        // return View();
+        var courses = _context.Courses.ToList();
+        return View("CoursesForStudent", courses); // Gọi view dành cho học viên
     }
 
     public IActionResult Privacy()
@@ -27,5 +32,19 @@ public class HomeController : Controller
     public IActionResult Error()
     {
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+    }
+
+    public IActionResult CourseEnrollments()
+    {
+        var data = _context.Courses
+            .Select(c => new CourseEnrollmentStatsViewModel
+            {
+                CourseId = c.CourseId,
+                CourseName = c.CourseName,
+                EnrollmentCount = c.Enrollments.Count()
+            })
+            .ToList();
+
+        return View(data);
     }
 }

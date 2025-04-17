@@ -1,0 +1,54 @@
+@model List<QuanLyTrungTam.Models.Course>
+
+<h2>Available Courses</h2>
+
+<table class="table table-bordered table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>Course Name</th>
+            <th>Start Date</th>
+            <th>Tuition Fee</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var course in Model)
+        {
+            <tr>
+                <td>@course.CourseName</td>
+                <td>@course.StartDate.ToString("dd/MM/yyyy")</td>
+                @* <td>@course.TuitionFee.ToString("C")</td> *@
+                <td>@String.Format(new System.Globalization.CultureInfo("vi-VN"), "{0:C0}", course.TuitionFee)</td>
+                <td>
+                    @* @if (User.Identity.IsAuthenticated)
+                    {
+                        <form asp-controller="Enrollment" asp-action="Register" method="post">
+                            <input type="hidden" name="courseId" value="@course.CourseId" />
+                            <button class="btn btn-success btn-sm">Register</button>
+                        </form>
+                    }
+                    else
+                    {
+                        <a class="btn btn-primary btn-sm" asp-controller="Account" asp-action="Login">Login to Register</a>
+                    } *@
+                    @{
+                        var studentId = Context.Session.GetInt32("StudentId");
+                    }
+
+                    @if (studentId != null)
+                    {
+                        <form asp-controller="Enrollment" asp-action="Register" method="post">
+                            <input type="hidden" name="courseId" value="@course.CourseId" />
+                            <button type="submit" class="btn btn-success">Register</button>
+                        </form>
+                    }
+                    else
+                    {
+                        <a href="/Account/Login" class="btn btn-primary">Login to Register</a>
+                    }
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

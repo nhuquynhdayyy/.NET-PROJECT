@@ -149,5 +149,20 @@ namespace QuanLyTrungTam.Controllers
         {
             return _context.Students.Any(e => e.StudentId == id);
         }
+
+        public IActionResult MyCourses()
+        {
+            var username = HttpContext.Session.GetString("Username");
+            var student = _context.Students.FirstOrDefault(s => s.Username == username);
+
+            var courses = _context.Enrollments
+                .Where(e => e.StudentId == student.StudentId)
+                .Include(e => e.Course)
+                .Select(e => e.Course)
+                .ToList();
+
+            return View(courses);
+        }
+
     }
 }

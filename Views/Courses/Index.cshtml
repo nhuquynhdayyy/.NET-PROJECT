@@ -31,33 +31,29 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.CourseName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Lecturer)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StartDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TuitionFee)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MaxStudents)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.CourseId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.CourseId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.CourseId">Delete</a>
-                @* <form asp-controller="Enrollment" asp-action="Register" method="post">
-                    <input type="hidden" name="courseId" value="@course.CourseId" />
-                    <button type="submit" class="btn btn-success">Đăng ký</button>
-                </form> *@
-            </td>
-        </tr>
-}
+    @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CourseName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Lecturer)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TuitionFee)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaxStudents)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.CourseId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.CourseId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.CourseId">Delete</a>
+                </td>
+            </tr>
+    }
     </tbody>
 </table>
