@@ -50,33 +50,6 @@ namespace QuanLyTrungTam.Controllers
         }
 
         // POST: Courses/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        // [HttpPost]
-        // [ValidateAntiForgeryToken]
-        // public async Task<IActionResult> Create([Bind("CourseId,CourseName,Lecturer,StartDate,TuitionFee,MaxStudents")] Course course)
-        // {
-        //     // if (ModelState.IsValid)
-        //     // {
-        //     //     _context.Add(course);
-        //     //     await _context.SaveChangesAsync();
-        //     //     return RedirectToAction(nameof(Index));
-        //     // }
-        //     if (ModelState.IsValid)
-        //     {
-        //         _context.Add(course);
-        //         await _context.SaveChangesAsync();
-        //         return RedirectToAction(nameof(Index));
-        //     }
-        //     else
-        //     {
-        //         foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
-        //         {
-        //             Console.WriteLine("Validation Error: " + error.ErrorMessage);
-        //         }
-        //     }
-        //     return View(course);
-        // }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("CourseId,CourseName,Lecturer,StartDate,TuitionFee,MaxStudents")] Course course)
@@ -86,6 +59,13 @@ namespace QuanLyTrungTam.Controllers
                 _context.Add(course);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
+            }
+            else
+            {
+                foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
+                {
+                    Console.WriteLine("Validation Error: " + error.ErrorMessage);
+                }
             }
             return View(course);
         }
@@ -107,8 +87,6 @@ namespace QuanLyTrungTam.Controllers
         }
 
         // POST: Courses/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("CourseId,CourseName,Lecturer,StartDate,TuitionFee,MaxStudents")] Course course)

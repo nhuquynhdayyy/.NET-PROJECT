@@ -30,6 +30,8 @@ namespace QuanLyTrungTam.Models
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
+        [Required]
+        public int Role { get; set; }  // 0 - "Student" hoặc 1 - "Admin"
         public ICollection<Enrollment> Enrollments { get; set; } = new List<Enrollment>();
     }
 }

@@ -32,7 +32,21 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-controller="Students" asp-action="Index">Quản lý Học viên</a>
                         </li>
+                        @* Hiển thị theo trạng thái đăng nhập *@
+                        @{
+                            var username = Context.Session.GetString("Username");
+                        }
 
+                        @if (string.IsNullOrEmpty(username))
+                        {
+                            <li><a href="/Account/Login">Login</a></li>
+                            <li><a href="/Account/Register">Register</a></li>
+                        }
+                        else
+                        {
+                            <li>Hello, @username!</li>
+                            <li><a href="/Account/Logout">Logout</a></li>
+                        }
                     </ul>
                 </div>
             </div>
