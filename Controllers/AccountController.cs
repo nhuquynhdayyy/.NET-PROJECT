@@ -98,5 +98,10 @@ namespace TrainingCenterApp.Controllers
             HttpContext.Session.Clear();
             return RedirectToAction("Login");
         }
+
+        public IActionResult AccessDenied()
+        {
+            return View();
+        }
     }
 }

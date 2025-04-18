@@ -1,0 +1,31 @@
+@model List<QuanLyTrungTam.ViewModels.RevenueReportViewModel>
+
+<h2>Revenue Report</h2>
+
+<form method="get">
+    <label>Start Date:</label>
+    <input type="date" name="startDate" value="@ViewBag.StartDate?.ToString("yyyy-MM-dd")" />
+    <label>End Date:</label>
+    <input type="date" name="endDate" value="@ViewBag.EndDate?.ToString("yyyy-MM-dd")" />
+    <button type="submit">Filter</button>
+</form>
+
+<table class="table table-bordered mt-3">
+    <thead>
+        <tr>
+            <th>Course</th>
+            <th>Students</th>
+            <th>Revenue (VNĐ)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.CourseName</td>
+                <td>@item.StudentCount</td>
+                <td>@item.Revenue.ToString("N0") ₫</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -35,47 +35,41 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-controller="Home" asp-action="CourseEnrollments">Thống kê đăng ký</a>
                         </li>
-                        @* <li class="nav-item"> *@
-                        @* Hiển thị theo trạng thái đăng nhập *@
-                        @* @{
-                            var username = Context.Session.GetString("Username");
-                        }
-
-                        @if (string.IsNullOrEmpty(username))
-                        {
-                            <li class="nav-item"><a href="/Account/Login">Login</a></li>
-                            <li class="nav-item"><a href="/Account/Register">Register</a></li>
-                        }
-                        else
-                        {
-                            <li class="nav-item">Hello, @username!</li>
-                            <li class="nav-item"><a href="/Account/Logout">Logout</a></li>
-                        } *@
-                        @* </li> *@
                         <ul class="navbar-nav ms-auto">
-    @{
-        var username = Context.Session.GetString("Username");
-    }
+                            @{
+                                var username = Context.Session.GetString("Username");
+                                var role = Context.Session.GetString("Role");
+                            }
 
-    @if (string.IsNullOrEmpty(username))
-    {
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-controller="Account" asp-action="Login">Login</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-controller="Account" asp-action="Register">Register</a>
-        </li>
-    }
-    else
-    {
-        <li class="nav-item">
-            <span class="nav-link text-dark">Hello, @username!</span>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-controller="Account" asp-action="Logout">Logout</a>
-        </li>
-    }
-</ul>
+                            @if (string.IsNullOrEmpty(username))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-controller="Account" asp-action="Login">Login</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-controller="Account" asp-action="Register">Register</a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="nav-item">
+                                    <span class="nav-link text-dark">Hello, @username!</span>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-controller="Account" asp-action="Logout">Logout</a>
+                                </li>
+                            }
+                            @if (Context.Session.GetInt32("Role") == 1)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/Admin/Dashboard">Admin Panel</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/Admin/RevenueReport">Revenue</a>
+                                </li>
+                            }
+
+                        </ul>
 
                     </ul>
                 </div>
