@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using QuanLyTrungTam.Data;
 using QuanLyTrungTam.Models;
+using QuanLyTrungTam.ViewModels; 
 
 namespace QuanLyTrungTam.Controllers
 {
@@ -155,14 +156,22 @@ namespace QuanLyTrungTam.Controllers
             var username = HttpContext.Session.GetString("Username");
             var student = _context.Students.FirstOrDefault(s => s.Username == username);
 
-            var courses = _context.Enrollments
+            if (student == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+            var courseList = _context.Enrollments
                 .Where(e => e.StudentId == student.StudentId)
                 .Include(e => e.Course)
-                .Select(e => e.Course)
+                .Select(e => new MyCourseViewModel
+                {
+                    EnrollmentId = e.EnrollmentId,
+                    Course = e.Course
+                })
                 .ToList();
 
-            return View(courses);
+            return View(courseList);
         }
-
     }
 }

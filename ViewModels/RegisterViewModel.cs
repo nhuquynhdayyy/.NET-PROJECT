@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace QuanLyTrungTam.ViewModels // <<== Phải trùng với project
+namespace QuanLyTrungTam.ViewModels 
 {
     public class RegisterViewModel
     {

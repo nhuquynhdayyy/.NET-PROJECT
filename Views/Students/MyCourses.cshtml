@@ -1,4 +1,4 @@
-@model List<QuanLyTrungTam.Models.Course>
+@model List<QuanLyTrungTam.ViewModels.MyCourseViewModel>
 
 @{
     ViewData["Title"] = "My Courses";
@@ -25,22 +25,29 @@ else
             </tr>
         </thead>
         <tbody>
-            @foreach (var course in Model)
+            @foreach (var item in Model)
             {
                 <tr>
-                    <td>@course.CourseName</td>
-                    <td>@course.Lecturer</td>
-                    <td>@course.StartDate.ToString("dd/MM/yyyy")</td>
-                    <td>@String.Format(new System.Globalization.CultureInfo("vi-VN"), "{0:C0}", course.TuitionFee)</td>
+                    <td>@item.Course.CourseName</td>
+                    <td>@item.Course.Lecturer</td>
+                    <td>@item.Course.StartDate.ToString("dd/MM/yyyy")</td>
+                    <td>@String.Format(new System.Globalization.CultureInfo("vi-VN"), "{0:C0}", item.Course.TuitionFee)</td>
                     <td>
-                        <!-- Hủy đăng ký (bổ sung sau nếu bạn muốn) -->
-                        @* <form asp-controller="Enrollment" asp-action="Cancel" method="post">
-                            <input type="hidden" name="courseId" value="@course.CourseId" />
-                            <button class="btn btn-danger btn-sm" type="submit">Cancel</button>
-                        </form> *@
+                        @if (DateTime.Now < item.Course.StartDate)
+                        {
+                            <form asp-action="Cancel" asp-controller="Enrollment" method="post">
+                                <input type="hidden" name="enrollmentId" value="@item.EnrollmentId" />
+                                <button type="submit" class="btn btn-danger btn-sm">Hủy đăng ký</button>
+                            </form>
+                        }
+                        else
+                        {
+                            <span class="text-muted">Đã khai giảng</span>
+                        }
                     </td>
                 </tr>
             }
+
         </tbody>
     </table>
 }
