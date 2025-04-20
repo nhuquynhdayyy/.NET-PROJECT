@@ -26,12 +26,12 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
-                        <li class="nav-item">
+                        @* <li class="nav-item">
                             <a class="nav-link text-dark" asp-controller="Courses" asp-action="Index">Quản lý Khóa học</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-controller="Students" asp-action="Index">Quản lý Học viên</a>
-                        </li>
+                        </li> *@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-controller="Home" asp-action="CourseEnrollments">Thống kê đăng ký</a>
                         </li>
@@ -61,6 +61,12 @@
                             }
                             @if (Context.Session.GetInt32("Role") == 1)
                             {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-controller="Courses" asp-action="Index">Quản lý Khóa học</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-controller="Students" asp-action="Index">Quản lý Học viên</a>
+                                </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="/Admin/Dashboard">Admin Panel</a>
                                 </li>
