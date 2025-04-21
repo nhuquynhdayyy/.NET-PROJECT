@@ -7,8 +7,6 @@ namespace QuanLyTrungTam.ViewModels
 {
     public class CourseEnrollmentStatsViewModel
     {
-        // public int CourseId { get; set; }
-        // public string CourseName { get; set; }
         public int EnrollmentCount { get; set; }
         public Course Course { get; set; }
     }

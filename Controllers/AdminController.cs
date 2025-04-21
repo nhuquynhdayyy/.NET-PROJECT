@@ -69,7 +69,7 @@ namespace QuanLyTrungTam.Controllers
         {
             if (HttpContext.Session.GetInt32("Role") != 1)
             {
-                return Forbid(); // Chặn truy cập nếu không phải admin
+                return RedirectToAction("AccessDenied", "Account");
             }
 
             var students = _context.Enrollments
