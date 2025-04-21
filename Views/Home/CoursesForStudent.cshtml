@@ -5,6 +5,7 @@
 <table class="table table-bordered table-hover">
     <thead class="table-dark">
         <tr>
+            <th>Course Id</th>
             <th>Course Name</th>
             <th>Lecturer</th>
             <th>Start Date</th>
@@ -17,6 +18,7 @@
         @foreach (var course in Model)
         {
             <tr>
+                <td>@course.CourseId</td>
                 <td>@course.CourseName</td>
                 <td>@course.Lecturer</td>
                 <td>@course.StartDate.ToString("dd/MM/yyyy")</td>

@@ -39,8 +39,7 @@ public class HomeController : Controller
         var data = _context.Courses
             .Select(c => new CourseEnrollmentStatsViewModel
             {
-                CourseId = c.CourseId,
-                CourseName = c.CourseName,
+                Course = c,
                 EnrollmentCount = c.Enrollments.Count()
             })
             .ToList();

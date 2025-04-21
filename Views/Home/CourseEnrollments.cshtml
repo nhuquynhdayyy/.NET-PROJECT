@@ -1,21 +1,21 @@
 @model List<QuanLyTrungTam.ViewModels.CourseEnrollmentStatsViewModel>
 
-<h2>Thống kê số lượng học viên đăng ký theo từng khóa học</h2>
+<h2>Statistics of Student Enrollments by Course</h2>
 
 <table class="table table-bordered">
     <thead>
         <tr>
-            <th>Mã khóa học</th>
-            <th>Tên khóa học</th>
-            <th>Số học viên đăng ký</th>
+            <th>Course Id</th>
+            <th>Course Name</th>
+            <th>Enrollment Count</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
             <tr>
-                <td>@item.CourseId</td>
-                <td>@item.CourseName</td>
+                <td>@item.Course.CourseId</td>
+                <td>@item.Course.CourseName</td>
                 <td>@item.EnrollmentCount</td>
             </tr>
         }
