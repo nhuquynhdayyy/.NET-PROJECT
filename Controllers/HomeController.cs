@@ -20,7 +20,7 @@ public class HomeController : Controller
     {
         // return View();
         var courses = _context.Courses.ToList();
-        return View("CoursesForStudent", courses); // Gọi view dành cho học viên
+        return View("CoursesForStudent", courses); 
     }
 
     public IActionResult Privacy()

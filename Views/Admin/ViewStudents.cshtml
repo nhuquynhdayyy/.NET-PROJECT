@@ -1,0 +1,31 @@
+@model List<QuanLyTrungTam.ViewModels.StudentInCourseViewModel>
+
+@{
+    ViewData["Title"] = "Registered Students";
+}
+
+<h3>Students Registered for Course @ViewBag.CourseId</h3>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>STT</th>
+            <th>Student ID</th>
+            <th>Full Name</th>
+            <th>Phone Number</th>
+            <th>Registered At</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var student in Model)
+        {
+            <tr>
+                <td>@student.STT</td>
+                <td>@student.StudentId</td>
+                <td>@student.FullName</td>
+                <td>@student.Phone</td>
+                <td>@student.RegisteredAt.ToString("dd/MM/yyyy HH:mm")</td>
+            </tr>
+        }
+    </tbody>
+</table>

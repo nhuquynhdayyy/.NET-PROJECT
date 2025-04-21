@@ -80,9 +80,9 @@ namespace TrainingCenterApp.Controllers
                     HttpContext.Session.SetInt32("Role", user.Role);
                     HttpContext.Session.SetInt32("StudentId", user.StudentId);
 
-                    if (user.Role == 1)
-                        return RedirectToAction("Dashboard", "Admin");
-                    else
+                    // if (user.Role == 1)
+                    //     return RedirectToAction("Dashboard", "Admin");
+                    // else
                         return RedirectToAction("Index", "Home");
                 }
 

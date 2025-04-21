@@ -4,6 +4,7 @@ using QuanLyTrungTam.Data;
 using QuanLyTrungTam.Models;
 using QuanLyTrungTam.ViewModels;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace QuanLyTrungTam.Controllers
 {
@@ -63,5 +64,32 @@ namespace QuanLyTrungTam.Controllers
 
             return View(data);
         }
+
+        public IActionResult ViewStudents(int courseId)
+        {
+            if (HttpContext.Session.GetInt32("Role") != 1)
+            {
+                return Forbid(); // Chặn truy cập nếu không phải admin
+            }
+
+            var students = _context.Enrollments
+                .Include(e => e.Student)
+                .Where(e => e.CourseId == courseId)
+                .ToList() // Lấy ra khỏi DB trước (chuyển sang LINQ to Objects)
+                .Select((e, index) => new StudentInCourseViewModel
+                {
+                    STT = index + 1,
+                    StudentId = e.Student.StudentId,
+                    FullName = e.Student.FullName,
+                    Phone = e.Student.PhoneNumber,
+                    RegisteredAt = e.RegisteredAt
+                })
+                .ToList();
+
+
+            ViewBag.CourseId = courseId;
+            return View(students); // Trỏ tới Views/Admin/ViewStudents.cshtml
+        }
+
     }
 }

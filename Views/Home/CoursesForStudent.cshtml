@@ -27,14 +27,21 @@
                 <td>
                     @{
                         var studentId = Context.Session.GetInt32("StudentId");
+                        var role = Context.Session.GetInt32("Role");
                     }
 
                     @if (studentId != null)
                     {
-                        <form asp-controller="Enrollment" asp-action="Register" method="post">
-                            <input type="hidden" name="courseId" value="@course.CourseId" />
-                            <button type="submit" class="btn btn-success">Register</button>
-                        </form>
+                        @if (role == 1) {
+                            <a asp-controller="Admin" asp-action="ViewStudents" asp-route-courseId="@course.CourseId" class="btn btn-info btn-sm">
+                                View Students
+                            </a>
+                        } else {
+                            <form asp-controller="Enrollment" asp-action="Register" method="post">
+                                <input type="hidden" name="courseId" value="@course.CourseId" />
+                                <button type="submit" class="btn btn-success">Register</button>
+                            </form>
+                        }
                     }
                     else
                     {
