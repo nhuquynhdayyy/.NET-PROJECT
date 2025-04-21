@@ -83,7 +83,7 @@ namespace TrainingCenterApp.Controllers
                     // if (user.Role == 1)
                     //     return RedirectToAction("Dashboard", "Admin");
                     // else
-                        return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Home");
                 }
 
                 ModelState.AddModelError("", "Invalid username or password.");
