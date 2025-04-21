@@ -4,8 +4,19 @@
 
 <h2>Welcome, Admin!</h2>
 
-<ul>
-    <li>Total Students: @ViewBag.TotalStudents</li>
-    <li>Total Courses: @ViewBag.TotalCourses</li>
-    <li>Total Enrollments: @ViewBag.TotalEnrollments</li>
-</ul>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Total Students</th>
+            <th>Total Courses</th>
+            <th>Total Enrollments</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@ViewBag.TotalStudents</td>
+            <td>@ViewBag.TotalCourses</td>
+            <td>@ViewBag.TotalEnrollments</td>
+        </tr>
+    </tbody>
+</table>
