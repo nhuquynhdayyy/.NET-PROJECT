@@ -27,11 +27,18 @@ namespace QuanLyTrungTam.Controllers
                 return RedirectToAction("AccessDenied", "Account");
             }
 
-            ViewBag.TotalStudents = _context.Students.Count();
-            ViewBag.TotalCourses = _context.Courses.Count();
-            ViewBag.TotalEnrollments = _context.Enrollments.Count();
+            // ViewBag.TotalStudents = _context.Students.Count();
+            // ViewBag.TotalCourses = _context.Courses.Count();
+            // ViewBag.TotalEnrollments = _context.Enrollments.Count();
+            var model = new DashboardViewModel
+            {
+                TotalStudents = _context.Students.Count(),
+                TotalCourses = _context.Courses.Count(),
+                TotalEnrollments = _context.Enrollments.Count()
+            };
+            return View(model);
 
-            return View();
+            // return View();
         }
 
         public IActionResult RevenueReport(DateTime? startDate, DateTime? endDate)
