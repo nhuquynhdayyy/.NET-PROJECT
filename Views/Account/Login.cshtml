@@ -1,4 +1,4 @@
-@model QuanLyTrungTam.ViewModels.LoginViewModel
+@* @model QuanLyTrungTam.ViewModels.LoginViewModel
 
 <h2>Login</h2>
 
@@ -14,4 +14,88 @@
         <span asp-validation-for="Password"></span>
     </div>
     <button type="submit">Login</button>
-</form>
+</form> *@
+<!-- Views/Account/Login.cshtml -->
+@model QuanLyTrungTam.ViewModels.LoginViewModel
+
+@{
+    ViewData["Title"] = "Đăng nhập";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="card shadow-lg border-0 rounded-lg">
+                <div class="card-header bg-primary text-white text-center py-4">
+                    <h3 class="mb-0"><i class="bi bi-box-arrow-in-right me-2"></i>Đăng nhập</h3>
+                </div>
+                <div class="card-body p-4">
+                    @if (TempData["Message"] != null)
+                    {
+                        <div class="alert alert-info alert-dismissible fade show" role="alert">
+                            @TempData["Message"]
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    }
+                    
+                    <form asp-action="Login" method="post" id="loginForm">
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+                        
+                        <div class="form-floating mb-3">
+                            <input asp-for="Username" class="form-control" placeholder="Tên đăng nhập" autocomplete="username" />
+                            <label asp-for="Username">Tên đăng nhập</label>
+                            <span asp-validation-for="Username" class="text-danger"></span>
+                        </div>
+                        
+                        <div class="form-floating mb-3">
+                            <input asp-for="Password" class="form-control" placeholder="Mật khẩu" autocomplete="current-password" />
+                            <label asp-for="Password">Mật khẩu</label>
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                        
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="rememberMe" name="rememberMe" />
+                            <label class="form-check-label" for="rememberMe">Ghi nhớ đăng nhập</label>
+                        </div>
+                        
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary btn-lg" id="loginButton">
+                                <span class="spinner-border spinner-border-sm d-none me-2" role="status" aria-hidden="true" id="loginSpinner"></span>
+                                Đăng nhập
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer text-center py-3">
+                    <div class="small">
+                        Chưa có tài khoản? <a href="@Url.Action("Register", "Account")">Đăng ký ngay!</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        $(document).ready(function() {
+            // Hiệu ứng khi submit form
+            $("#loginForm").on("submit", function() {
+                if ($(this).valid()) {
+                    $("#loginButton").attr("disabled", true);
+                    $("#loginSpinner").removeClass("d-none");
+                    return true;
+                }
+                return false;
+            });
+            
+            // Hiệu ứng khi focus vào input
+            $(".form-control").focus(function() {
+                $(this).parent().addClass("border-primary");
+            }).blur(function() {
+                $(this).parent().removeClass("border-primary");
+            });
+        });
+    </script>
+}
