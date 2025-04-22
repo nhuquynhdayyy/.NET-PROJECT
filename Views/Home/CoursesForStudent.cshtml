@@ -1,4 +1,4 @@
-@model List<QuanLyTrungTam.Models.Course>
+@* @model List<QuanLyTrungTam.Models.Course>
 
 <h2>Available Courses</h2>
 
@@ -52,4 +52,163 @@
             </tr>
         }
     </tbody>
-</table>
+</table> *@
+<!-- Views/Home/CoursesForStudent.cshtml -->
+@model IEnumerable<QuanLyTrungTam.Models.Course>
+@{
+    ViewData["Title"] = "Khóa học";
+}
+
+<div class="container mt-4">
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <h1 class="display-5 fw-bold text-primary">Khóa học hiện có</h1>
+            <p class="lead">Khám phá các khóa học chất lượng cao tại trung tâm của chúng tôi</p>
+        </div>
+        <div class="col-md-6">
+            <div class="input-group mt-3">
+                <input type="text" id="searchInput" class="form-control" placeholder="Tìm kiếm khóa học...">
+                <button class="btn btn-primary" type="button" id="searchButton">
+                    <i class="bi bi-search"></i> Tìm kiếm
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    @if (TempData["Message"] != null)
+    {
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+            @TempData["Message"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+    
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <div class="btn-group" role="group">
+                <button type="button" class="btn btn-outline-primary filter-btn active" data-filter="all">Tất cả</button>
+                <button type="button" class="btn btn-outline-primary filter-btn" data-filter="upcoming">Sắp khai giảng</button>
+                <button type="button" class="btn btn-outline-primary filter-btn" data-filter="available">Còn chỗ</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row row-cols-1 row-cols-md-3 g-4" id="courseContainer">
+        @foreach (var course in Model)
+        {
+            var isUpcoming = course.StartDate > DateTime.Now;
+            var isAvailable = course.Enrollments.Count() < course.MaxStudents;
+            var percentFilled = (int)(course.Enrollments.Count() * 100 / course.MaxStudents);
+            var statusClass = isUpcoming ? "upcoming" : "";
+            statusClass += isAvailable ? " available" : "";
+            
+            <div class="col course-card @statusClass">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                        <h5 class="card-title mb-0">@course.CourseName</h5>
+                        @if (isUpcoming)
+                        {
+                            <span class="badge bg-success">Sắp khai giảng</span>
+                        }
+                    </div>
+                    <div class="card-body">
+                        <div class="text-center mb-3">
+                            <img src="/images/course-@(course.CourseId % 5 + 1).jpg" class="img-fluid rounded" alt="@course.CourseName" 
+                                 style="height: 150px; object-fit: cover;">
+                        </div>
+                        <p class="card-text"><i class="bi bi-person-fill me-2"></i><strong>Giảng viên:</strong> @course.Lecturer</p>
+                        <p class="card-text"><i class="bi bi-calendar-event me-2"></i><strong>Ngày khai giảng:</strong> @course.StartDate.ToString("dd/MM/yyyy")</p>
+                        <p class="card-text"><i class="bi bi-cash-coin me-2"></i><strong>Học phí:</strong> @course.TuitionFee.ToString("N0") đ</p>
+                        <p class="card-text">
+                            <i class="bi bi-people-fill me-2"></i><strong>Số lượng học viên:</strong> 
+                            <span class="ms-1">@course.Enrollments.Count() / @course.MaxStudents</span>
+                            <div class="progress mt-2">
+                                <div class="progress-bar @(percentFilled > 80 ? "bg-danger" : "bg-success")" role="progressbar" 
+                                     style="width: @percentFilled%" 
+                                     aria-valuenow="@course.Enrollments.Count()" 
+                                     aria-valuemin="0" 
+                                     aria-valuemax="@course.MaxStudents">
+                                    @percentFilled%
+                                </div>
+                            </div>
+                        </p>
+                    </div>
+                    <div class="card-footer bg-transparent border-top-0">
+                        @{
+                            var studentId = Context.Session.GetInt32("StudentId");
+                            var role = Context.Session.GetInt32("Role");
+                        }
+
+                        @if (studentId != null)
+                        {
+                            @if (role == 1) 
+                            {
+                                <a asp-controller="Admin" asp-action="ViewStudents" asp-route-courseId="@course.CourseId" 
+                                   class="btn btn-info w-100">
+                                    <i class="bi bi-eye me-2"></i>Xem học viên
+                                </a>
+                            } 
+                            else 
+                            {
+                                <form asp-controller="Enrollment" asp-action="Register" method="post">
+                                    <input type="hidden" name="courseId" value="@course.CourseId" />
+                                    <button type="submit" class="btn btn-primary w-100 @(!isAvailable || !isUpcoming ? "disabled" : "")" 
+                                            @(!isAvailable || !isUpcoming ? "disabled" : "")>
+                                        <i class="bi bi-journal-check me-2"></i>Đăng ký
+                                    </button>
+                                </form>
+                            }
+                        }
+                        else
+                        {
+                            <a href="/Account/Login" class="btn btn-outline-primary w-100">
+                                <i class="bi bi-box-arrow-in-right me-2"></i>Đăng nhập để đăng ký
+                            </a>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            // Tìm kiếm khóa học
+            $("#searchInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $(".course-card").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+            
+            // Lọc khóa học
+            $(".filter-btn").click(function() {
+                $(".filter-btn").removeClass("active");
+                $(this).addClass("active");
+                
+                var filter = $(this).data("filter");
+                if (filter === "all") {
+                    $(".course-card").show();
+                } else {
+                    $(".course-card").hide();
+                    $("." + filter).show();
+                }
+            });
+            
+            // Hiệu ứng hover cho card
+            $(".card").hover(
+                function() {
+                    $(this).addClass("shadow");
+                    $(this).css("transform", "translateY(-5px)");
+                    $(this).css("transition", "transform 0.3s ease");
+                },
+                function() {
+                    $(this).removeClass("shadow");
+                    $(this).css("transform", "translateY(0)");
+                }
+            );
+        });
+    </script>
+}

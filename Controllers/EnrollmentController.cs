@@ -50,11 +50,11 @@ namespace QuanLyTrungTam.Controllers
                 return NotFound();
             }
 
-            if (course.StartDate <= DateTime.Today)
-            {
-                TempData["Message"] = "This course has already started. Registration is closed.";
-                return RedirectToAction("MyCourses", "Students");
-            }
+            // if (course.StartDate <= DateTime.Today)
+            // {
+            //     TempData["Message"] = "This course has already started. Registration is closed.";
+            //     return RedirectToAction("MyCourses", "Students");
+            // }
 
             if (enrolledCount >= course.MaxStudents)
             {

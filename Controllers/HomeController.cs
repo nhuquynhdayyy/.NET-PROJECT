@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using QuanLyTrungTam.Models;
 using QuanLyTrungTam.Data;
 using QuanLyTrungTam.ViewModels;
+using Microsoft.EntityFrameworkCore;
 
 namespace QuanLyTrungTam.Controllers;
 
@@ -19,7 +20,10 @@ public class HomeController : Controller
     public IActionResult Index()
     {
         // return View();
-        var courses = _context.Courses.ToList();
+        // var courses = _context.Courses.ToList();
+        var courses = _context.Courses
+            .Include(c => c.Enrollments) // 👈 dòng quan trọng để lấy số lượng đăng ký
+            .ToList();
         return View("CoursesForStudent", courses); 
     }
 
