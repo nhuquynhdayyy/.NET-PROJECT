@@ -51,6 +51,7 @@ namespace TrainingCenterApp.Controllers
                 _context.Students.Add(student);
                 _context.SaveChanges();
 
+                TempData["Message"] = "Registration successful. Please log in.";
                 return RedirectToAction("Login");
             }
 
