@@ -13,6 +13,22 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\Admin\\OneDrive - The University of Technology\\Desktop\\.NET PROJECT\\QuanLyTrungTam\\wwwroot\\images\\course-1.jpg",
+      "PackagePath": "staticwebassets\\images\\course-1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Admin\\OneDrive - The University of Technology\\Desktop\\.NET PROJECT\\QuanLyTrungTam\\wwwroot\\images\\course-2.jpg",
+      "PackagePath": "staticwebassets\\images\\course-2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Admin\\OneDrive - The University of Technology\\Desktop\\.NET PROJECT\\QuanLyTrungTam\\wwwroot\\images\\course-4.jpg",
+      "PackagePath": "staticwebassets\\images\\course-4.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Admin\\OneDrive - The University of Technology\\Desktop\\.NET PROJECT\\QuanLyTrungTam\\wwwroot\\images\\course-default.jpg",
+      "PackagePath": "staticwebassets\\images\\course-default.jpg"
+    },
+    {
       "Id": "C:\\Users\\Admin\\OneDrive - The University of Technology\\Desktop\\.NET PROJECT\\QuanLyTrungTam\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

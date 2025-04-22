@@ -897,6 +897,334 @@
       ]
     },
     {
+      "Route": "images/course-1.0boggnu0v5.jpg",
+      "AssetFile": "images/course-1.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "44063"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"DItBv2KwmZUrK/DIZZExXoNvHPUjmLWxAM9SLseQhK0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 22 Apr 2025 16:08:44 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "0boggnu0v5"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-DItBv2KwmZUrK/DIZZExXoNvHPUjmLWxAM9SLseQhK0="
+        },
+        {
+          "Name": "label",
+          "Value": "images/course-1.jpg"
+        }
+      ]
+    },
+    {
+      "Route": "images/course-1.jpg",
+      "AssetFile": "images/course-1.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "44063"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"DItBv2KwmZUrK/DIZZExXoNvHPUjmLWxAM9SLseQhK0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 22 Apr 2025 16:08:44 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-DItBv2KwmZUrK/DIZZExXoNvHPUjmLWxAM9SLseQhK0="
+        }
+      ]
+    },
+    {
+      "Route": "images/course-2.jpg",
+      "AssetFile": "images/course-2.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "9541"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"sB9Ew5UcMXpR4kvhs7VnBH/8x+4Xn25mgub5/akhdlU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 22 Apr 2025 16:09:07 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-sB9Ew5UcMXpR4kvhs7VnBH/8x+4Xn25mgub5/akhdlU="
+        }
+      ]
+    },
+    {
+      "Route": "images/course-2.w8r7ia6aes.jpg",
+      "AssetFile": "images/course-2.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "9541"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"sB9Ew5UcMXpR4kvhs7VnBH/8x+4Xn25mgub5/akhdlU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 22 Apr 2025 16:09:07 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "w8r7ia6aes"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-sB9Ew5UcMXpR4kvhs7VnBH/8x+4Xn25mgub5/akhdlU="
+        },
+        {
+          "Name": "label",
+          "Value": "images/course-2.jpg"
+        }
+      ]
+    },
+    {
+      "Route": "images/course-4.dllofn75k1.jpg",
+      "AssetFile": "images/course-4.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "51043"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"r6FQjH8s5bS1gMgPuLxHJcuPL5JcmDPN0UVujYvdCtc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 22 Apr 2025 16:09:40 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "dllofn75k1"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-r6FQjH8s5bS1gMgPuLxHJcuPL5JcmDPN0UVujYvdCtc="
+        },
+        {
+          "Name": "label",
+          "Value": "images/course-4.jpg"
+        }
+      ]
+    },
+    {
+      "Route": "images/course-4.jpg",
+      "AssetFile": "images/course-4.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "51043"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"r6FQjH8s5bS1gMgPuLxHJcuPL5JcmDPN0UVujYvdCtc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 22 Apr 2025 16:09:40 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-r6FQjH8s5bS1gMgPuLxHJcuPL5JcmDPN0UVujYvdCtc="
+        }
+      ]
+    },
+    {
+      "Route": "images/course-default.cc9w3w5o8k.jpg",
+      "AssetFile": "images/course-default.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "62092"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"tFXOkuRqDVXIGFtLtRCrByw5tWb5c2kj6RHp+PkEZMc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 22 Apr 2025 16:10:56 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "cc9w3w5o8k"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-tFXOkuRqDVXIGFtLtRCrByw5tWb5c2kj6RHp+PkEZMc="
+        },
+        {
+          "Name": "label",
+          "Value": "images/course-default.jpg"
+        }
+      ]
+    },
+    {
+      "Route": "images/course-default.jpg",
+      "AssetFile": "images/course-default.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "62092"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"tFXOkuRqDVXIGFtLtRCrByw5tWb5c2kj6RHp+PkEZMc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 22 Apr 2025 16:10:56 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-tFXOkuRqDVXIGFtLtRCrByw5tWb5c2kj6RHp+PkEZMc="
+        }
+      ]
+    },
+    {
       "Route": "js/site.js",
       "AssetFile": "js/site.js.gz",
       "Selectors": [

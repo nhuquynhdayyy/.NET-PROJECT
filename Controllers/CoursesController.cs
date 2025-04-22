@@ -56,8 +56,20 @@ namespace QuanLyTrungTam.Controllers
         {
             if (ModelState.IsValid)
             {
+                // _context.Add(course);
+                // await _context.SaveChangesAsync();
+                // return RedirectToAction(nameof(Index));
+                // Bước 1: Thêm khóa học vào DB
                 _context.Add(course);
+                await _context.SaveChangesAsync(); // CourseId được sinh ra tại đây
+
+                // Bước 2: Cập nhật đường dẫn ảnh theo CourseId
+                course.ImageUrl = $"/images/course-{course.CourseId}.jpg";
+
+                // Bước 3: Cập nhật lại bản ghi
+                _context.Update(course);
                 await _context.SaveChangesAsync();
+
                 return RedirectToAction(nameof(Index));
             }
             else

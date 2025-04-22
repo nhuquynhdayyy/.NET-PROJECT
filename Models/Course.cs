@@ -22,6 +22,7 @@ namespace QuanLyTrungTam.Models
 
         [Range(1, 1000)]
         public int MaxStudents { get; set; }
+        public string ImageUrl { get; set; } = "/images/course-default.jpg";
 
         public ICollection<Enrollment> Enrollments { get; set; } = new List<Enrollment>();
     }

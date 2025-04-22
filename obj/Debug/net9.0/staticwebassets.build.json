@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "CfLJLwRQ5U4aFrzQ1pz9NUcilQUE5mgy+Bm3/J2SCVg=",
+  "Hash": "aNdOLTk4SdPpO3OUPgRLq0Id8JKW/yDjphtU2+A3UpY=",
   "Source": "QuanLyTrungTam",
   "BasePath": "_content/QuanLyTrungTam",
   "Mode": "Default",
@@ -1443,6 +1443,90 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\Admin\\OneDrive - The University of Technology\\Desktop\\.NET PROJECT\\QuanLyTrungTam\\wwwroot\\images\\course-1.jpg",
+      "SourceId": "QuanLyTrungTam",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Admin\\OneDrive - The University of Technology\\Desktop\\.NET PROJECT\\QuanLyTrungTam\\wwwroot\\",
+      "BasePath": "_content/QuanLyTrungTam",
+      "RelativePath": "images/course-1#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "0boggnu0v5",
+      "Integrity": "DItBv2KwmZUrK/DIZZExXoNvHPUjmLWxAM9SLseQhK0=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\course-1.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\Admin\\OneDrive - The University of Technology\\Desktop\\.NET PROJECT\\QuanLyTrungTam\\wwwroot\\images\\course-2.jpg",
+      "SourceId": "QuanLyTrungTam",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Admin\\OneDrive - The University of Technology\\Desktop\\.NET PROJECT\\QuanLyTrungTam\\wwwroot\\",
+      "BasePath": "_content/QuanLyTrungTam",
+      "RelativePath": "images/course-2#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "w8r7ia6aes",
+      "Integrity": "sB9Ew5UcMXpR4kvhs7VnBH/8x+4Xn25mgub5/akhdlU=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\course-2.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\Admin\\OneDrive - The University of Technology\\Desktop\\.NET PROJECT\\QuanLyTrungTam\\wwwroot\\images\\course-4.jpg",
+      "SourceId": "QuanLyTrungTam",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Admin\\OneDrive - The University of Technology\\Desktop\\.NET PROJECT\\QuanLyTrungTam\\wwwroot\\",
+      "BasePath": "_content/QuanLyTrungTam",
+      "RelativePath": "images/course-4#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "dllofn75k1",
+      "Integrity": "r6FQjH8s5bS1gMgPuLxHJcuPL5JcmDPN0UVujYvdCtc=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\course-4.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\Admin\\OneDrive - The University of Technology\\Desktop\\.NET PROJECT\\QuanLyTrungTam\\wwwroot\\images\\course-default.jpg",
+      "SourceId": "QuanLyTrungTam",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Admin\\OneDrive - The University of Technology\\Desktop\\.NET PROJECT\\QuanLyTrungTam\\wwwroot\\",
+      "BasePath": "_content/QuanLyTrungTam",
+      "RelativePath": "images/course-default#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "cc9w3w5o8k",
+      "Integrity": "tFXOkuRqDVXIGFtLtRCrByw5tWb5c2kj6RHp+PkEZMc=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\course-default.jpg"
     },
     {
       "Identity": "C:\\Users\\Admin\\OneDrive - The University of Technology\\Desktop\\.NET PROJECT\\QuanLyTrungTam\\wwwroot\\js\\site.js",
@@ -3320,6 +3404,334 @@
         {
           "Name": "integrity",
           "Value": "sha256-wfFuuYm+Lh6RbCeeiUqxw334b/hIOkp5j9eokGUM1Y0="
+        }
+      ]
+    },
+    {
+      "Route": "images/course-1.0boggnu0v5.jpg",
+      "AssetFile": "C:\\Users\\Admin\\OneDrive - The University of Technology\\Desktop\\.NET PROJECT\\QuanLyTrungTam\\wwwroot\\images\\course-1.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "44063"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"DItBv2KwmZUrK/DIZZExXoNvHPUjmLWxAM9SLseQhK0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 22 Apr 2025 16:08:44 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "0boggnu0v5"
+        },
+        {
+          "Name": "label",
+          "Value": "images/course-1.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-DItBv2KwmZUrK/DIZZExXoNvHPUjmLWxAM9SLseQhK0="
+        }
+      ]
+    },
+    {
+      "Route": "images/course-1.jpg",
+      "AssetFile": "C:\\Users\\Admin\\OneDrive - The University of Technology\\Desktop\\.NET PROJECT\\QuanLyTrungTam\\wwwroot\\images\\course-1.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "44063"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"DItBv2KwmZUrK/DIZZExXoNvHPUjmLWxAM9SLseQhK0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 22 Apr 2025 16:08:44 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-DItBv2KwmZUrK/DIZZExXoNvHPUjmLWxAM9SLseQhK0="
+        }
+      ]
+    },
+    {
+      "Route": "images/course-2.jpg",
+      "AssetFile": "C:\\Users\\Admin\\OneDrive - The University of Technology\\Desktop\\.NET PROJECT\\QuanLyTrungTam\\wwwroot\\images\\course-2.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "9541"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"sB9Ew5UcMXpR4kvhs7VnBH/8x+4Xn25mgub5/akhdlU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 22 Apr 2025 16:09:07 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-sB9Ew5UcMXpR4kvhs7VnBH/8x+4Xn25mgub5/akhdlU="
+        }
+      ]
+    },
+    {
+      "Route": "images/course-2.w8r7ia6aes.jpg",
+      "AssetFile": "C:\\Users\\Admin\\OneDrive - The University of Technology\\Desktop\\.NET PROJECT\\QuanLyTrungTam\\wwwroot\\images\\course-2.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "9541"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"sB9Ew5UcMXpR4kvhs7VnBH/8x+4Xn25mgub5/akhdlU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 22 Apr 2025 16:09:07 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "w8r7ia6aes"
+        },
+        {
+          "Name": "label",
+          "Value": "images/course-2.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-sB9Ew5UcMXpR4kvhs7VnBH/8x+4Xn25mgub5/akhdlU="
+        }
+      ]
+    },
+    {
+      "Route": "images/course-4.dllofn75k1.jpg",
+      "AssetFile": "C:\\Users\\Admin\\OneDrive - The University of Technology\\Desktop\\.NET PROJECT\\QuanLyTrungTam\\wwwroot\\images\\course-4.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "51043"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"r6FQjH8s5bS1gMgPuLxHJcuPL5JcmDPN0UVujYvdCtc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 22 Apr 2025 16:09:40 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "dllofn75k1"
+        },
+        {
+          "Name": "label",
+          "Value": "images/course-4.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-r6FQjH8s5bS1gMgPuLxHJcuPL5JcmDPN0UVujYvdCtc="
+        }
+      ]
+    },
+    {
+      "Route": "images/course-4.jpg",
+      "AssetFile": "C:\\Users\\Admin\\OneDrive - The University of Technology\\Desktop\\.NET PROJECT\\QuanLyTrungTam\\wwwroot\\images\\course-4.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "51043"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"r6FQjH8s5bS1gMgPuLxHJcuPL5JcmDPN0UVujYvdCtc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 22 Apr 2025 16:09:40 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-r6FQjH8s5bS1gMgPuLxHJcuPL5JcmDPN0UVujYvdCtc="
+        }
+      ]
+    },
+    {
+      "Route": "images/course-default.cc9w3w5o8k.jpg",
+      "AssetFile": "C:\\Users\\Admin\\OneDrive - The University of Technology\\Desktop\\.NET PROJECT\\QuanLyTrungTam\\wwwroot\\images\\course-default.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "62092"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"tFXOkuRqDVXIGFtLtRCrByw5tWb5c2kj6RHp+PkEZMc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 22 Apr 2025 16:10:56 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "cc9w3w5o8k"
+        },
+        {
+          "Name": "label",
+          "Value": "images/course-default.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-tFXOkuRqDVXIGFtLtRCrByw5tWb5c2kj6RHp+PkEZMc="
+        }
+      ]
+    },
+    {
+      "Route": "images/course-default.jpg",
+      "AssetFile": "C:\\Users\\Admin\\OneDrive - The University of Technology\\Desktop\\.NET PROJECT\\QuanLyTrungTam\\wwwroot\\images\\course-default.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "62092"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"tFXOkuRqDVXIGFtLtRCrByw5tWb5c2kj6RHp+PkEZMc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 22 Apr 2025 16:10:56 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-tFXOkuRqDVXIGFtLtRCrByw5tWb5c2kj6RHp+PkEZMc="
         }
       ]
     },
