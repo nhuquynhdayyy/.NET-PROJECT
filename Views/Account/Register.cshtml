@@ -31,7 +31,7 @@
     </div>
     <button type="submit">Register</button>
 </form> *@
-@model QuanLyTrungTam.ViewModels.RegisterViewModel
+@* @model QuanLyTrungTam.ViewModels.RegisterViewModel
 
 @{
     ViewData["Title"] = "Register";
@@ -89,4 +89,178 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+} *@
+
+<!-- Views/Account/Register.cshtml -->
+@model QuanLyTrungTam.ViewModels.RegisterViewModel
+
+@{
+    ViewData["Title"] = "Đăng ký";
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-7">
+            <div class="card shadow-lg border-0 rounded-lg">
+                <div class="card-header bg-primary text-white text-center py-4">
+                    <h3 class="mb-0"><i class="bi bi-person-plus-fill me-2"></i>Đăng ký tài khoản</h3>
+                </div>
+                <div class="card-body p-4">
+                    <form asp-action="Register" method="post" id="registerForm">
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+                        
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3 mb-md-0">
+                                    <input asp-for="FullName" class="form-control" placeholder="Họ và tên" />
+                                    <label asp-for="FullName">Họ và tên</label>
+                                    <span asp-validation-for="FullName" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input asp-for="DateOfBirth" class="form-control" placeholder="Ngày sinh" type="date" />
+                                    <label asp-for="DateOfBirth">Ngày sinh</label>
+                                    <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3 mb-md-0">
+                                    <input asp-for="PhoneNumber" class="form-control" placeholder="Số điện thoại" />
+                                    <label asp-for="PhoneNumber">Số điện thoại</label>
+                                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input asp-for="Email" class="form-control" placeholder="Email" />
+                                    <label asp-for="Email">Email</label>
+                                    <span asp-validation-for="Email" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-floating mb-3">
+                            <input asp-for="Username" class="form-control" placeholder="Tên đăng nhập" />
+                            <label asp-for="Username">Tên đăng nhập</label>
+                            <span asp-validation-for="Username" class="text-danger"></span>
+                        </div>
+                        
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3 mb-md-0">
+                                    <input asp-for="Password" class="form-control" placeholder="Mật khẩu" type="password" />
+                                    <label asp-for="Password">Mật khẩu</label>
+                                    <span asp-validation-for="Password" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input asp-for="ConfirmPassword" class="form-control" placeholder="Xác nhận mật khẩu" type="password" />
+                                    <label asp-for="ConfirmPassword">Xác nhận mật khẩu</label>
+                                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-4 mb-0">
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary btn-lg" id="registerButton">
+                                    <span class="spinner-border spinner-border-sm d-none me-2" role="status" aria-hidden="true" id="registerSpinner"></span>
+                                    Đăng ký
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer text-center py-3">
+                    <div class="small">
+                        Đã có tài khoản? <a href="@Url.Action("Login", "Account")">Đăng nhập</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        $(document).ready(function() {
+            // Hiệu ứng khi submit form
+            $("#registerForm").on("submit", function() {
+                if ($(this).valid()) {
+                    $("#registerButton").attr("disabled", true);
+                    $("#registerSpinner").removeClass("d-none");
+                    return true;
+                }
+                return false;
+            });
+            
+            // Hiệu ứng khi focus vào input
+            $(".form-control").focus(function() {
+                $(this).parent().addClass("border-primary");
+            }).blur(function() {
+                $(this).parent().removeClass("border-primary");
+            });
+            
+            // Kiểm tra độ mạnh của mật khẩu
+            $("#Password").on("keyup", function() {
+                var password = $(this).val();
+                var strength = 0;
+                
+                if (password.length >= 6) strength += 1;
+                if (password.match(/[a-z]+/)) strength += 1;
+                if (password.match(/[A-Z]+/)) strength += 1;
+                if (password.match(/[0-9]+/)) strength += 1;
+                if (password.match(/[^a-zA-Z0-9]+/)) strength += 1;
+                
+                var strengthBar = $("<div>").addClass("progress-bar");
+                var progressClass = "";
+                var strengthText = "";
+                
+                switch (strength) {
+                    case 0:
+                    case 1:
+                        progressClass = "bg-danger";
+                        strengthText = "Rất yếu";
+                        break;
+                    case 2:
+                        progressClass = "bg-warning";
+                        strengthText = "Yếu";
+                        break;
+                    case 3:
+                        progressClass = "bg-info";
+                        strengthText = "Trung bình";
+                        break;
+                    case 4:
+                        progressClass = "bg-primary";
+                        strengthText = "Mạnh";
+                        break;
+                    case 5:
+                        progressClass = "bg-success";
+                        strengthText = "Rất mạnh";
+                        break;
+                }
+                
+                strengthBar.addClass(progressClass)
+                    .css("width", (strength * 20) + "%")
+                    .attr("aria-valuenow", strength * 20);
+                
+                if ($("#password-strength").length === 0) {
+                    var progressContainer = $("<div>").addClass("progress mt-2").attr("id", "password-strength");
+                    progressContainer.append(strengthBar);
+                    $(this).parent().append(progressContainer);
+                    $(this).parent().append($("<small>").addClass("form-text text-muted mt-1").attr("id", "strength-text"));
+                } else {
+                    $("#password-strength .progress-bar").removeClass("bg-danger bg-warning bg-info bg-primary bg-success").addClass(progressClass).css("width", (strength * 20) + "%");
+                }
+                
+                $("#strength-text").text("Độ mạnh mật khẩu: " + strengthText);
+            });
+        });
+    </script>
 }
