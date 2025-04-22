@@ -1,4 +1,4 @@
-@model List<QuanLyTrungTam.ViewModels.RevenueReportViewModel>
+@* @model List<QuanLyTrungTam.ViewModels.RevenueReportViewModel>
 
 <h2>Revenue Report</h2>
 
@@ -28,4 +28,236 @@
             </tr>
         }
     </tbody>
-</table>
+</table> *@
+<!-- Views/Admin/RevenueReport.cshtml -->
+@model List<QuanLyTrungTam.ViewModels.RevenueReportViewModel>
+
+@{
+    ViewData["Title"] = "Báo cáo doanh thu";
+    var totalRevenue = Model.Sum(m => m.Revenue);
+    var totalStudents = Model.Sum(m => m.StudentCount);
+}
+
+<div class="container-fluid mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="display-5 fw-bold text-primary">Báo cáo doanh thu</h1>
+        <a href="@Url.Action("Dashboard", "Admin")" class="btn btn-outline-primary">
+            <i class="bi bi-arrow-left me-2"></i>Quay lại Dashboard
+        </a>
+    </div>
+    
+    <div class="card mb-4">
+        <div class="card-header bg-white">
+            <h5 class="mb-0"><i class="bi bi-funnel-fill me-2"></i>Lọc báo cáo</h5>
+        </div>
+        <div class="card-body">
+            <form method="get" class="row g-3">
+                <div class="col-md-4">
+                    <label for="startDate" class="form-label">Từ ngày</label>
+                    <input type="date" class="form-control" id="startDate" name="startDate" 
+                           value="@ViewBag.StartDate?.ToString("yyyy-MM-dd")">
+                </div>
+                <div class="col-md-4">
+                    <label for="endDate" class="form-label">Đến ngày</label>
+                    <input type="date" class="form-control" id="endDate" name="endDate" 
+                           value="@ViewBag.EndDate?.ToString("yyyy-MM-dd")">
+                </div>
+                <div class="col-md-4 d-flex align-items-end">
+                    <button type="submit" class="btn btn-primary me-2">
+                        <i class="bi bi-search me-2"></i>Lọc
+                    </button>
+                    <a href="@Url.Action("RevenueReport", "Admin")" class="btn btn-outline-secondary">
+                        <i class="bi bi-x-circle me-2"></i>Xóa bộ lọc
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <div class="card h-100">
+                <div class="card-header bg-white">
+                    <h5 class="mb-0"><i class="bi bi-cash-coin me-2"></i>Tổng quan</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <div class="card bg-primary text-white">
+                                <div class="card-body">
+                                    <h6 class="text-uppercase mb-0">Tổng doanh thu</h6>
+                                    <h2 class="display-6 mb-0">@totalRevenue.ToString("N0") đ</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="card bg-success text-white">
+                                <div class="card-body">
+                                    <h6 class="text-uppercase mb-0">Tổng học viên</h6>
+                                    <h2 class="display-6 mb-0">@totalStudents</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-3">
+                        <h6>Thống kê theo khóa học</h6>
+                        <canvas id="revenueBarChart" width="100%" height="200"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card h-100">
+                <div class="card-header bg-white">
+                    <h5 class="mb-0"><i class="bi bi-table me-2"></i>Chi tiết doanh thu</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Khóa học</th>
+                                    <th class="text-center">Số học viên</th>
+                                    <th class="text-end">Doanh thu</th>
+                                    <th class="text-end">Tỷ lệ</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.OrderByDescending(m => m.Revenue))
+                                {
+                                    var percentage = totalRevenue > 0 ? (item.Revenue * 100 / totalRevenue) : 0;
+                                    <tr>
+                                        <td>@item.CourseName</td>
+                                        <td class="text-center">@item.StudentCount</td>
+                                        <td class="text-end">@item.Revenue.ToString("N0") đ</td>
+                                        <td class="text-end">@percentage.ToString("N1")%</td>
+                                    </tr>
+                                }
+                            </tbody>
+                            <tfoot>
+                                <tr class="fw-bold">
+                                    <td>Tổng cộng</td>
+                                    <td class="text-center">@totalStudents</td>
+                                    <td class="text-end">@totalRevenue.ToString("N0") đ</td>
+                                    <td class="text-end">100%</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="card mb-4">
+        <div class="card-header bg-white">
+            <h5 class="mb-0"><i class="bi bi-pie-chart-fill me-2"></i>Phân bố doanh thu</h5>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <canvas id="revenuePieChart" width="100%" height="300"></canvas>
+                </div>
+                <div class="col-md-6">
+                    <div class="table-responsive">
+                        <table class="table table-borderless">
+                            <thead>
+                                <tr>
+                                    <th>Khóa học</th>
+                                    <th>Tỷ lệ</th>
+                                    <th>Doanh thu</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.OrderByDescending(m => m.Revenue).Take(5))
+                                {
+                                    var percentage = totalRevenue > 0 ? (item.Revenue * 100 / totalRevenue) : 0;
+                                    <tr>
+                                        <td>@item.CourseName</td>
+                                        <td>@percentage.ToString("N1")%</td>
+                                        <td>@item.Revenue.ToString("N0") đ</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Hàm tạo màu ngẫu nhiên nhưng nhất quán cho mỗi khóa học
+        function GetRandomColor(id) {
+            const colors = [
+                '#007bff', '#28a745', '#ffc107', '#dc3545', '#6f42c1', 
+                '#fd7e14', '#20c997', '#17a2b8', '#6610f2', '#e83e8c'
+            ];
+            return colors[id % colors.length];
+        }
+
+        // Dữ liệu cho biểu đồ cột
+        const barChartData = {
+            labels: @Html.Raw(Json.Serialize(Model.Select(m => m.CourseName).ToList())),
+            datasets: [{
+                label: 'Doanh thu (đồng)',
+                backgroundColor: 'rgba(2, 117, 216, 0.7)',
+                borderColor: 'rgba(2, 117, 216, 1)',
+                data: @Html.Raw(Json.Serialize(Model.Select(m => m.Revenue).ToList())),
+            }]
+        };
+        
+        // Dữ liệu cho biểu đồ tròn
+        const pieChartData = {
+            labels: @Html.Raw(Json.Serialize(Model.Select(m => m.CourseName).ToList())),
+            datasets: [{
+                data: @Html.Raw(Json.Serialize(Model.Select(m => m.Revenue).ToList())),
+                backgroundColor: @Html.Raw(Json.Serialize(Model.Select(m => m.CourseId).ToList()))
+                    .map(id => GetRandomColor(id))
+            }]
+        };
+        
+        // Vẽ biểu đồ
+        const ctxBar = document.getElementById('revenueBarChart');
+        new Chart(ctxBar, {
+            type: 'bar',
+            data: barChartData,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+        
+        const ctxPie = document.getElementById('revenuePieChart');
+        new Chart(ctxPie, {
+            type: 'pie',
+            data: pieChartData,
+            options: {
+                plugins: {
+                    legend: {
+                        position: 'right'
+                    }
+                }
+            }
+        });
+    </script>
+    
+    <style>
+        .color-box {
+            width: 16px;
+            height: 16px;
+            border-radius: 4px;
+        }
+    </style>
+}
