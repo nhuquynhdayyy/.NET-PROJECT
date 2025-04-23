@@ -187,8 +187,13 @@
                                     @if (role == 0) 
                                     {
                                         <li>
+                                            <a class="dropdown-item" asp-controller="Students" asp-action="Details" asp-route-id="@Context.Session.GetInt32("StudentId")">
+                                                <i class="bi bi-person me-2"></i>Hồ sơ cá nhân
+                                            </a>
+                                        </li>
+                                        <li>
                                             <a class="dropdown-item" asp-controller="Students" asp-action="MyCourses">
-                                                <i class="bi bi-journal-check me-2"></i>Khóa học của tôi
+                                                <i class="bi bi-book me-2"></i>Khóa học đã đăng ký
                                             </a>
                                         </li>
                                     }

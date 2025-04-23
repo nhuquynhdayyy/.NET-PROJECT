@@ -67,9 +67,14 @@
             <a asp-action="Edit" asp-route-id="@Model.Student.StudentId" class="btn btn-primary me-2">
                 <i class="bi bi-pencil-square me-2"></i>Chỉnh sửa
             </a>
-            <a asp-action="Index" class="btn btn-outline-primary">
-                <i class="bi bi-arrow-left me-2"></i>Quay lại danh sách
-            </a>
+            @{
+                    int? currentUserRole = Context.Session.GetInt32("Role");
+                }
+            @if (currentUserRole == 1) {
+                <a asp-action="Index" class="btn btn-outline-primary">
+                    <i class="bi bi-arrow-left me-2"></i>Quay lại danh sách
+                </a>
+            }
         </div>
     </div>
 
@@ -107,7 +112,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-footer bg-white">
+                @* <div class="card-footer bg-white">
                     <div class="d-flex justify-content-between">
                         <a asp-action="Edit" asp-route-id="@Model.Student.StudentId" class="btn btn-outline-primary btn-sm w-100 me-2">
                             <i class="bi bi-pencil-square me-2"></i>Chỉnh sửa
@@ -116,7 +121,28 @@
                             <i class="bi bi-trash me-2"></i>Xóa học viên
                         </a>
                     </div>
-                </div>
+                </div> *@
+                @if (currentUserRole == 1)
+                {
+                    <div class="card-footer bg-white">
+                        <div class="d-flex justify-content-between">
+                            <a asp-action="Edit" asp-route-id="@Model.Student.StudentId" class="btn btn-outline-primary btn-sm w-100 me-2">
+                                <i class="bi bi-pencil-square me-2"></i>Chỉnh sửa
+                            </a>
+                            <a asp-action="Delete" asp-route-id="@Model.Student.StudentId" class="btn btn-outline-danger btn-sm w-100">
+                                <i class="bi bi-trash me-2"></i>Xóa học viên
+                            </a>
+                        </div>
+                    </div>
+                }
+                else 
+                {
+                    <div class="card-footer bg-white">
+                        <a asp-action="Edit" asp-route-id="@Model.Student.StudentId" class="btn btn-outline-primary w-100">
+                            <i class="bi bi-pencil-square me-2"></i>Chỉnh sửa thông tin cá nhân
+                        </a>
+                    </div>
+                }
             </div>
         </div>
 
