@@ -1,4 +1,4 @@
-@model QuanLyTrungTam.Models.Course
+@* @model QuanLyTrungTam.Models.Course
 
 @{
     ViewData["Title"] = "Edit";
@@ -51,4 +51,173 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+} *@
+@model QuanLyTrungTam.Models.Course
+
+@{
+    ViewData["Title"] = "Chỉnh sửa khóa học";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="display-5 fw-bold text-primary">
+            <i class="bi bi-pencil-square me-2"></i>Chỉnh sửa khóa học
+        </h1>
+        <a asp-action="Index" class="btn btn-outline-primary">
+            <i class="bi bi-arrow-left me-2"></i>Quay lại danh sách
+        </a>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-header bg-white">
+                    <h5 class="mb-0"><i class="bi bi-journal-text me-2"></i>Thông tin khóa học</h5>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Edit" id="editForm">
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+                        <input type="hidden" asp-for="CourseId" />
+                        
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                <div class="form-floating mb-3">
+                                    <input asp-for="CourseName" class="form-control" placeholder="Tên khóa học" />
+                                    <label asp-for="CourseName">Tên khóa học</label>
+                                    <span asp-validation-for="CourseName" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <input asp-for="Lecturer" class="form-control" placeholder="Giảng viên" />
+                                    <label asp-for="Lecturer">Giảng viên</label>
+                                    <span asp-validation-for="Lecturer" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <input asp-for="StartDate" class="form-control" type="date" placeholder="Ngày khai giảng" />
+                                    <label asp-for="StartDate">Ngày khai giảng</label>
+                                    <span asp-validation-for="StartDate" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <input asp-for="TuitionFee" class="form-control" placeholder="Học phí" type="number" />
+                                    <label asp-for="TuitionFee">Học phí (VNĐ)</label>
+                                    <span asp-validation-for="TuitionFee" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <input asp-for="MaxStudents" class="form-control" placeholder="Số học viên tối đa" type="number" />
+                                    <label asp-for="MaxStudents">Số học viên tối đa</label>
+                                    <span asp-validation-for="MaxStudents" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                <div class="form-floating mb-3">
+                                    <input name="ImageUrl" class="form-control" placeholder="URL hình ảnh" value="@(Model.ImageUrl ?? "")" />
+                                    <label for="ImageUrl">URL hình ảnh (tùy chọn)</label>
+                                </div>
+                                <small class="text-muted">Để trống để sử dụng hình ảnh mặc định</small>
+                            </div>
+                        </div>
+                        
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+                            <a asp-action="Index" class="btn btn-outline-secondary me-md-2">
+                                <i class="bi bi-x-circle me-2"></i>Hủy
+                            </a>
+                            <button type="submit" class="btn btn-primary" id="submitButton">
+                                <i class="bi bi-check-circle me-2"></i>Lưu thay đổi
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm mb-4">
+                <div class="card-header bg-white">
+                    <h5 class="mb-0"><i class="bi bi-info-circle me-2"></i>Thông tin khóa học</h5>
+                </div>
+                <div class="card-body">
+                    <div class="text-center mb-3">
+                        <img src="@(string.IsNullOrEmpty(Model.ImageUrl) ? "/images/course-default.jpg" : Model.ImageUrl)" 
+                             alt="@Model.CourseName" class="img-fluid rounded mb-3" style="height: 150px; object-fit: cover;">
+                        <h5>@Model.CourseName</h5>
+                        <p class="text-muted">Mã khóa học: @Model.CourseId</p>
+                    </div>
+                    <hr />
+                    <div class="d-flex justify-content-between">
+                        <a asp-action="Details" asp-route-id="@Model.CourseId" class="btn btn-outline-info btn-sm w-100 me-2">
+                            <i class="bi bi-info-circle me-2"></i>Xem chi tiết
+                        </a>
+                        <a asp-action="Delete" asp-route-id="@Model.CourseId" class="btn btn-outline-danger btn-sm w-100">
+                            <i class="bi bi-trash me-2"></i>Xóa khóa học
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card shadow-sm">
+                <div class="card-header bg-white">
+                    <h5 class="mb-0"><i class="bi bi-people-fill me-2"></i>Học viên đã đăng ký</h5>
+                </div>
+                <div class="card-body">
+                    @{
+                        var enrollmentCount = Model.Enrollments?.Count() ?? 0;
+                        var percentFilled = Model.MaxStudents > 0 ? (enrollmentCount * 100 / Model.MaxStudents) : 0;
+                    }
+                    
+                    <div class="text-center mb-3">
+                        <div class="display-4 fw-bold">@enrollmentCount</div>
+                        <p class="text-muted">/@Model.MaxStudents học viên</p>
+                    </div>
+                    
+                    <div class="progress mb-3" style="height: 10px;">
+                        <div class="progress-bar @(percentFilled > 80 ? "bg-danger" : "bg-success")" 
+                             role="progressbar" 
+                             style="width: @percentFilled%;" 
+                             aria-valuenow="@percentFilled" 
+                             aria-valuemin="0" 
+                             aria-valuemax="100">
+                        </div>
+                    </div>
+                    
+                    <div class="text-center">
+                        <a asp-controller="Admin" asp-action="ViewStudents" asp-route-courseId="@Model.CourseId" class="btn btn-outline-primary btn-sm">
+                            <i class="bi bi-people me-2"></i>Xem danh sách học viên
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        $(document).ready(function() {
+            // Hiệu ứng khi submit form
+            $("#editForm").on("submit", function() {
+                if ($(this).valid()) {
+                    $("#submitButton").attr("disabled", true);
+                    $("#submitButton").html('<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Đang lưu...');
+                    return true;
+                }
+                return false;
+            });
+        });
+    </script>
 }

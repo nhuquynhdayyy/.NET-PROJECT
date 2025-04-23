@@ -1,4 +1,4 @@
-@model QuanLyTrungTam.Models.Course
+@* @model QuanLyTrungTam.Models.Course
 
 @{
     ViewData["Title"] = "Create";
@@ -51,4 +51,176 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+} *@
+@model QuanLyTrungTam.Models.Course
+
+@{
+    ViewData["Title"] = "Thêm khóa học mới";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="display-5 fw-bold text-primary">
+            <i class="bi bi-journal-plus me-2"></i>Thêm khóa học mới
+        </h1>
+        <a asp-action="Index" class="btn btn-outline-primary">
+            <i class="bi bi-arrow-left me-2"></i>Quay lại danh sách
+        </a>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-header bg-white">
+                    <h5 class="mb-0"><i class="bi bi-pencil-square me-2"></i>Thông tin khóa học</h5>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Create" method="post" id="createForm">
+                        @Html.AntiForgeryToken()
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+                        
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                <div class="form-floating mb-3">
+                                    <input asp-for="CourseName" class="form-control" placeholder="Tên khóa học" />
+                                    <label asp-for="CourseName">Tên khóa học</label>
+                                    <span asp-validation-for="CourseName" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <input asp-for="Lecturer" class="form-control" placeholder="Giảng viên" />
+                                    <label asp-for="Lecturer">Giảng viên</label>
+                                    <span asp-validation-for="Lecturer" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <input asp-for="StartDate" class="form-control" type="date" placeholder="Ngày khai giảng" />
+                                    <label asp-for="StartDate">Ngày khai giảng</label>
+                                    <span asp-validation-for="StartDate" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <input asp-for="TuitionFee" class="form-control" placeholder="Học phí" type="number" />
+                                    <label asp-for="TuitionFee">Học phí (VNĐ)</label>
+                                    <span asp-validation-for="TuitionFee" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <input asp-for="MaxStudents" class="form-control" placeholder="Số học viên tối đa" type="number" />
+                                    <label asp-for="MaxStudents">Số học viên tối đa</label>
+                                    <span asp-validation-for="MaxStudents" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                <div class="form-floating mb-3">
+                                    <input name="ImageUrl" class="form-control" placeholder="URL hình ảnh" />
+                                    <label for="ImageUrl">URL hình ảnh (tùy chọn)</label>
+                                </div>
+                                <small class="text-muted">Để trống để sử dụng hình ảnh mặc định</small>
+                            </div>
+                        </div>
+                        
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+                            <a asp-action="Index" class="btn btn-outline-secondary me-md-2">
+                                <i class="bi bi-x-circle me-2"></i>Hủy
+                            </a>
+                            <button type="submit" class="btn btn-primary" id="submitButton">
+                                <i class="bi bi-check-circle me-2"></i>Lưu khóa học
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <div class="card-header bg-white">
+                    <h5 class="mb-0"><i class="bi bi-info-circle me-2"></i>Hướng dẫn</h5>
+                </div>
+                <div class="card-body">
+                    <p><i class="bi bi-check-circle text-success me-2"></i>Điền đầy đủ thông tin khóa học.</p>
+                    <p><i class="bi bi-check-circle text-success me-2"></i>Ngày khai giảng nên là ngày trong tương lai.</p>
+                    <p><i class="bi bi-check-circle text-success me-2"></i>Học phí nên là số dương và phù hợp với nội dung khóa học.</p>
+                    <p><i class="bi bi-check-circle text-success me-2"></i>Số học viên tối đa nên phù hợp với khả năng đào tạo.</p>
+                    <p><i class="bi bi-exclamation-triangle text-warning me-2"></i>Sau khi tạo khóa học, bạn có thể thêm học viên vào khóa học.</p>
+                </div>
+            </div>
+            
+            <div class="card shadow-sm mt-4">
+                <div class="card-header bg-white">
+                    <h5 class="mb-0"><i class="bi bi-image me-2"></i>Xem trước</h5>
+                </div>
+                <div class="card-body text-center">
+                    <div class="course-preview">
+                        <img src="/images/course-default.jpg" alt="Course Preview" class="img-fluid rounded mb-3" id="coursePreview" style="height: 150px; object-fit: cover;">
+                        <h5 id="previewCourseName">Tên khóa học</h5>
+                        <p class="text-muted" id="previewLecturer">Giảng viên</p>
+                        <div class="d-flex justify-content-between">
+                            <span id="previewStartDate">DD/MM/YYYY</span>
+                            <span id="previewTuition">0 VNĐ</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        $(document).ready(function() {
+            // Hiệu ứng khi submit form
+            $("#createForm").on("submit", function() {
+                if ($(this).valid()) {
+                    $("#submitButton").attr("disabled", true);
+                    $("#submitButton").html('<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Đang lưu...');
+                    return true;
+                }
+                return false;
+            });
+            
+            // Cập nhật xem trước
+            function updatePreview() {
+                $("#previewCourseName").text($("#CourseName").val() || "Tên khóa học");
+                $("#previewLecturer").text($("#Lecturer").val() || "Giảng viên");
+                
+                var startDate = $("#StartDate").val();
+                if (startDate) {
+                    var date = new Date(startDate);
+                    $("#previewStartDate").text(date.toLocaleDateString('vi-VN'));
+                } else {
+                    $("#previewStartDate").text("DD/MM/YYYY");
+                }
+                
+                var tuition = $("#TuitionFee").val();
+                if (tuition) {
+                    $("#previewTuition").text(parseInt(tuition).toLocaleString('vi-VN') + " VNĐ");
+                } else {
+                    $("#previewTuition").text("0 VNĐ");
+                }
+                
+                var imageUrl = $("input[name='ImageUrl']").val();
+                if (imageUrl) {
+                    $("#coursePreview").attr("src", imageUrl);
+                }
+            }
+            
+            // Cập nhật xem trước khi nhập liệu
+            $("#CourseName, #Lecturer, #StartDate, #TuitionFee, input[name='ImageUrl']").on("input", updatePreview);
+        });
+    </script>
 }
