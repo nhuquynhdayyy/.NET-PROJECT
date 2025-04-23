@@ -27,22 +27,47 @@ namespace QuanLyTrungTam.Controllers
         }
 
         // GET: Students/Details/5
+        // public async Task<IActionResult> Details(int? id)
+        // {
+        //     if (id == null)
+        //     {
+        //         return NotFound();
+        //     }
+
+        //     var student = await _context.Students
+        //         .FirstOrDefaultAsync(m => m.StudentId == id);
+        //     if (student == null)
+        //     {
+        //         return NotFound();
+        //     }
+
+        //     return View(student);
+        // }
+
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            if (id == null) return NotFound();
 
             var student = await _context.Students
-                .FirstOrDefaultAsync(m => m.StudentId == id);
-            if (student == null)
-            {
-                return NotFound();
-            }
+                .Include(s => s.Enrollments)
+                    .ThenInclude(e => e.Course)
+                .FirstOrDefaultAsync(s => s.StudentId == id);
 
-            return View(student);
+            if (student == null) return NotFound();
+
+            var courses = student.Enrollments
+                .Select(e => e.Course)
+                .ToList();
+
+            var viewModel = new StudentDetailsViewModel
+            {
+                Student = student,
+                Courses = courses
+            };
+
+            return View(viewModel);
         }
+
 
         // GET: Students/Create
         public IActionResult Create()
@@ -65,6 +90,20 @@ namespace QuanLyTrungTam.Controllers
         }
 
         // GET: Students/Edit/5
+        // public async Task<IActionResult> Edit(int? id)
+        // {
+        //     if (id == null)
+        //     {
+        //         return NotFound();
+        //     }
+
+        //     var student = await _context.Students.FindAsync(id);
+        //     if (student == null)
+        //     {
+        //         return NotFound();
+        //     }
+        //     return View(student);
+        // }
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -72,13 +111,30 @@ namespace QuanLyTrungTam.Controllers
                 return NotFound();
             }
 
-            var student = await _context.Students.FindAsync(id);
+            var student = await _context.Students
+                .Include(s => s.Enrollments)
+                    .ThenInclude(e => e.Course)  // Đảm bảo load thông tin khóa học qua Enrollments
+                .FirstOrDefaultAsync(s => s.StudentId == id);
+
             if (student == null)
             {
                 return NotFound();
             }
-            return View(student);
+
+            var courses = student.Enrollments
+                .Select(e => e.Course) // Lấy các khóa học mà học viên đã đăng ký
+                .ToList();
+
+            var viewModel = new StudentDetailsViewModel
+            {
+                Student = student,
+                Courses = courses
+            };
+
+            return View(viewModel); // Trả ViewModel vào View
         }
+
+
 
         // POST: Students/Edit/5
         [HttpPost]
@@ -173,5 +229,22 @@ namespace QuanLyTrungTam.Controllers
 
             return View(courseList);
         }
+
+        // [HttpGet]
+        // public IActionResult GetRegisteredCourses(int studentId)
+        // {
+        //     var courses = _context.Enrollments
+        //         .Include(r => r.Course)
+        //         .Where(r => r.StudentId == studentId)
+        //         .Select(r => new {
+        //             courseName = r.Course.CourseName,
+        //             // description = r.Course.Description,
+        //             fee = r.Course.TuitionFee
+        //         })
+        //         .ToList();
+
+        //     return Json(courses);
+        // }
+
     }
 }
