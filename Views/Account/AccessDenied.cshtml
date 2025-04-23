@@ -1,7 +1,54 @@
-@{
+@* @{
     ViewData["Title"] = "Access Denied";
 }
 
 <h2 class="text-danger">Access Denied</h2>
 <p>You do not have permission to access this page.</p>
-<a href="/">Go back to Home</a>
+<a href="/">Go back to Home</a> *@
+@{
+    ViewData["Title"] = "Từ chối truy cập";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm border-danger">
+                <div class="card-body text-center py-5">
+                    <div class="mb-4">
+                        <i class="bi bi-shield-lock-fill text-danger" style="font-size: 5rem;"></i>
+                    </div>
+                    <h1 class="display-6 fw-bold text-danger mb-3">Từ chối truy cập</h1>
+                    <p class="lead mb-4">Bạn không có quyền truy cập vào trang này.</p>
+                    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                        <a href="/" class="btn btn-primary px-4 py-2">
+                            <i class="bi bi-house-door-fill me-2"></i>Quay lại trang chủ
+                        </a>
+                        <button onclick="history.back()" class="btn btn-outline-secondary px-4 py-2">
+                            <i class="bi bi-arrow-left me-2"></i>Quay lại trang trước
+                        </button>
+                    </div>
+                </div>
+                <div class="card-footer bg-white py-3">
+                    <div class="text-center text-muted">
+                        <small>Nếu bạn cho rằng đây là lỗi, vui lòng liên hệ với quản trị viên.</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+    
+    .card {
+        border-radius: 10px;
+        overflow: hidden;
+    }
+    
+    .btn {
+        border-radius: 5px;
+    }
+</style>
