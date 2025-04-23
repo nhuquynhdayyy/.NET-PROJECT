@@ -23,7 +23,11 @@ namespace QuanLyTrungTam.Controllers
         // GET: Students
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Students.ToListAsync());
+            var students = _context.Students
+                .Where(s => s.Role == 0)
+                .ToList();
+            return View(students);
+            // return View(await _context.Students.ToListAsync());
         }
 
         // GET: Students/Details/5

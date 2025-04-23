@@ -32,7 +32,7 @@ namespace QuanLyTrungTam.Controllers
             // ViewBag.TotalEnrollments = _context.Enrollments.Count();
             var model = new DashboardViewModel
             {
-                TotalStudents = _context.Students.Count(),
+                TotalStudents = _context.Students.Count(s => s.Role == 0),
                 TotalCourses = _context.Courses.Count(),
                 TotalEnrollments = _context.Enrollments.Count()
             };

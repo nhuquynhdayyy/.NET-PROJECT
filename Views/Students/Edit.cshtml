@@ -57,7 +57,7 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 } *@
-@* @model QuanLyTrungTam.Models.Student *@
+
 @model QuanLyTrungTam.ViewModels.StudentDetailsViewModel
 
 @{
@@ -88,7 +88,6 @@
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <div class="form-floating mb-3">
-                                    @* <input asp-for="FullName" class="form-control" placeholder="Họ và tên" /> *@
                                     <input asp-for="Student.FullName" class="form-control" placeholder="Họ và tên" />
                                     <label asp-for="Student.FullName">Họ và tên</label>
                                     <span asp-validation-for="Student.FullName" class="text-danger"></span>
@@ -96,7 +95,6 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating mb-3">
-                                    @* <input asp-for="DateOfBirth" class="form-control" type="date" placeholder="Ngày sinh" /> *@
                                     <input asp-for="Student.DateOfBirth" class="form-control" type="date" placeholder="Ngày sinh" />
                                     <label asp-for="Student.DateOfBirth">Ngày sinh</label>
                                     <span asp-validation-for="Student.DateOfBirth" class="text-danger"></span>
@@ -107,7 +105,6 @@
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <div class="form-floating mb-3">
-                                    @* <input asp-for="PhoneNumber" class="form-control" placeholder="Số điện thoại" /> *@
                                     <input asp-for="Student.PhoneNumber" class="form-control" placeholder="Số điện thoại" />
                                     <label asp-for="Student.PhoneNumber">Số điện thoại</label>
                                     <span asp-validation-for="Student.PhoneNumber" class="text-danger"></span>
@@ -115,7 +112,6 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating mb-3">
-                                    @* <input asp-for="Email" class="form-control" placeholder="Email" type="email" /> *@
                                     <input asp-for="Student.Email" class="form-control" placeholder="Email" type="email" />
                                     <label asp-for="Student.Email">Email</label>
                                     <span asp-validation-for="Student.Email" class="text-danger"></span>
@@ -129,7 +125,6 @@
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <div class="form-floating mb-3">
-                                    @* <input asp-for="Username" class="form-control" placeholder="Tên đăng nhập" /> *@
                                     <input asp-for="Student.Username" class="form-control" placeholder="Tên đăng nhập" />
                                     <label asp-for="Student.Username">Tên đăng nhập</label>
                                     <span asp-validation-for="Student.Username" class="text-danger"></span>
@@ -137,7 +132,6 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating mb-3">
-                                    @* <input asp-for="Password" class="form-control" placeholder="Mật khẩu" type="password" id="password" /> *@
                                     <input asp-for="Student.Password" class="form-control" placeholder="Mật khẩu" type="password" />
                                     <label asp-for="Student.Password">Mật khẩu</label>
                                     <span asp-validation-for="Student.Password" class="text-danger"></span>
@@ -209,79 +203,10 @@
                     }
                 </div>
             </div>
-            @* <div class="col-md-8">
-                <div class="card shadow-sm mb-4">
-                    <div class="card-header bg-white">
-                        <h5 class="mb-0"><i class="bi bi-journal-check me-2"></i>Khóa học đã đăng ký</h5>
-                    </div>
-                    <div class="card-body">
-                        @if (Model.Courses.Any()) // Kiểm tra nếu có khóa học
-                        {
-                            <ul class="list-group">
-                                @foreach (var course in Model.Courses)
-                                {
-                                    <li class="list-group-item">
-                                        <h6 class="mb-1">@course.CourseName</h6>
-                                        <p class="mb-0 text-muted">Giảng viên: @course.Lecturer</p>
-                                        <small class="text-success fw-bold">Học phí: @course.TuitionFee.ToString("C")</small>
-                                    </li>
-                                }
-                            </ul>
-                        }
-                        else
-                        {
-                            <div class="text-center py-5">
-                                <i class="bi bi-journal-x text-muted" style="font-size: 3rem;"></i>
-                                <h5 class="mt-3">Chưa đăng ký khóa học nào</h5>
-                                <p class="text-muted">Không có dữ liệu để hiển thị</p>
-                            </div>
-                        }
-                    </div>
-                </div>
-
-                <!-- Nếu có thể thêm phần "Hoạt động gần đây", nhưng không yêu cầu trong câu hỏi của bạn -->
-                <div class="card shadow-sm">
-                    <div class="card-header bg-white">
-                        <h5 class="mb-0"><i class="bi bi-activity me-2"></i>Hoạt động gần đây</h5>
-                    </div>
-                    <div class="card-body">
-                        <p class="mb-0 text-muted">Không có hoạt động nào gần đây</p>
-                    </div>
-                </div>
-            </div> *@
         </div>
     </div>
 </div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    @* <script>
-        $(document).ready(function() {
-            // Hiệu ứng khi submit form
-            $("#editForm").on("submit", function() {
-                if ($(this).valid()) {
-                    $("#submitButton").attr("disabled", true);
-                    $("#submitButton").html('<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Đang lưu...');
-                    return true;
-                }
-                return false;
-            });
-            
-            // Giả lập tải danh sách khóa học đã đăng ký
-            setTimeout(function() {
-                var studentId = @Model.StudentId;
-                // Trong thực tế, bạn sẽ gọi AJAX để lấy danh sách khóa học
-                var html = '';
-                
-                // Giả sử không có khóa học nào
-                html = '<div class="text-center py-3">' +
-                       '<i class="bi bi-journal-x text-muted" style="font-size: 2rem;"></i>' +
-                       '<p class="mt-2">Học viên chưa đăng ký khóa học nào</p>' +
-                       '</div>';
-                
-                // Cập nhật nội dung
-                $("#enrollmentList").html(html);
-            }, 1000);
-        });
-    </script> *@
 }
