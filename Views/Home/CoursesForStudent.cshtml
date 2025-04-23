@@ -112,10 +112,22 @@
                         }
                     </div>
                     <div class="card-body">
-                        <div class="text-center mb-3">
+                        @* <div class="text-center mb-3">
                             <img src="/images/course-@(course.CourseId).jpg" class="img-fluid rounded" alt="@course.CourseName" 
                                  style="height: 150px; object-fit: cover;">
+                        </div> *@
+                        @{
+                            var courseImage = $"/images/course-{course.CourseId}.jpg";
+                            var physicalPath = System.IO.Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", $"images/course-{course.CourseId}.jpg");
+                            var fileExists = System.IO.File.Exists(physicalPath);
+                            var displayImage = fileExists ? courseImage : "/images/course-default.jpg";
+                        }
+
+                        <div class="text-center mb-3">
+                            <img src="@displayImage" class="img-fluid rounded" alt="@course.CourseName" 
+                                style="height: 150px; object-fit: cover;">
                         </div>
+
                         <p class="card-text"><i class="bi bi-person-fill me-2"></i><strong>Giảng viên:</strong> @course.Lecturer</p>
                         <p class="card-text"><i class="bi bi-calendar-event me-2"></i><strong>Ngày khai giảng:</strong> @course.StartDate.ToString("dd/MM/yyyy")</p>
                         <p class="card-text"><i class="bi bi-cash-coin me-2"></i><strong>Học phí:</strong> @course.TuitionFee.ToString("N0") đ</p>

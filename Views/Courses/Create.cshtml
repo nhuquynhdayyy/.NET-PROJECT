@@ -123,7 +123,7 @@
                             </div>
                         </div>
                         
-                        <div class="row mb-3">
+                        @* <div class="row mb-3">
                             <div class="col-md-12">
                                 <div class="form-floating mb-3">
                                     <input name="ImageUrl" class="form-control" placeholder="URL hình ảnh" />
@@ -131,7 +131,7 @@
                                 </div>
                                 <small class="text-muted">Để trống để sử dụng hình ảnh mặc định</small>
                             </div>
-                        </div>
+                        </div> *@
                         
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
                             <a asp-action="Index" class="btn btn-outline-secondary me-md-2">
@@ -213,7 +213,8 @@
                     $("#previewTuition").text("0 VNĐ");
                 }
                 
-                var imageUrl = $("input[name='ImageUrl']").val();
+                @* var imageUrl = $("input[name='ImageUrl']").val(); *@
+                var imageUrl = $("#ImageUrl").val();
                 if (imageUrl) {
                     $("#coursePreview").attr("src", imageUrl);
                 }

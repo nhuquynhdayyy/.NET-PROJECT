@@ -92,7 +92,9 @@ namespace QuanLyTrungTam.Controllers
                 await _context.SaveChangesAsync(); // CourseId được sinh ra tại đây
 
                 // Bước 2: Cập nhật đường dẫn ảnh theo CourseId
+                // course.ImageUrl = $"/images/course-{course.CourseId}.jpg";
                 course.ImageUrl = $"/images/course-{course.CourseId}.jpg";
+
 
                 // Bước 3: Cập nhật lại bản ghi
                 _context.Update(course);
@@ -109,6 +111,7 @@ namespace QuanLyTrungTam.Controllers
             }
             return View(course);
         }
+
 
         // GET: Courses/Edit/5
         public async Task<IActionResult> Edit(int? id)
