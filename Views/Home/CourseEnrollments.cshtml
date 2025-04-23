@@ -1,4 +1,4 @@
-@model List<QuanLyTrungTam.ViewModels.CourseEnrollmentStatsViewModel>
+@* @model List<QuanLyTrungTam.ViewModels.CourseEnrollmentStatsViewModel>
 
 <h2>Statistics of Student Enrollments by Course</h2>
 
@@ -26,4 +26,147 @@
             </tr>
         }
     </tbody>
-</table>
+</table> *@
+@model List<QuanLyTrungTam.ViewModels.CourseEnrollmentStatsViewModel>
+@{
+    ViewData["Title"] = "Thống kê đăng ký khóa học";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="display-5 fw-bold text-primary">
+            <i class="bi bi-bar-chart-line me-2"></i>Thống kê đăng ký khóa học
+        </h1>
+        <a href="@Url.Action("Index", "Home")" class="btn btn-outline-primary">
+            <i class="bi bi-arrow-left me-2"></i>Quay lại
+        </a>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-header bg-white">
+                    <h5 class="mb-0"><i class="bi bi-table me-2"></i>Danh sách khóa học</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Mã khóa học</th>
+                                    <th>Tên khóa học</th>
+                                    <th class="text-center">Số lượng đăng ký</th>
+                                    <th class="text-center">Tỷ lệ</th>
+                                    <th>Thao tác</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                                    var totalEnrollments = Model.Sum(m => m.EnrollmentCount);
+                                }
+                                @foreach (var item in Model.OrderByDescending(m => m.EnrollmentCount))
+                                {
+                                    var percentage = totalEnrollments > 0 ? (item.EnrollmentCount * 100 / totalEnrollments) : 0;
+                                    <tr>
+                                        <td>@item.Course.CourseId</td>
+                                        <td>@item.Course.CourseName</td>
+                                        <td class="text-center">
+                                            <span class="badge bg-primary rounded-pill">@item.EnrollmentCount</span>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <div class="progress flex-grow-1" style="height: 8px;">
+                                                    <div class="progress-bar @(percentage > 50 ? "bg-success" : "bg-primary")" 
+                                                         role="progressbar" 
+                                                         style="width: @percentage%;" 
+                                                         aria-valuenow="@percentage" 
+                                                         aria-valuemin="0" 
+                                                         aria-valuemax="100"></div>
+                                                </div>
+                                                <span class="ms-2 text-muted small">@percentage%</span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <a asp-controller="Admin" asp-action="ViewStudents" asp-route-courseId="@item.Course.CourseId" 
+                                               class="btn btn-outline-primary btn-sm">
+                                                <i class="bi bi-people me-1"></i>Xem học viên
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-header bg-white">
+                    <h5 class="mb-0"><i class="bi bi-pie-chart-fill me-2"></i>Biểu đồ phân bố</h5>
+                </div>
+                <div class="card-body d-flex flex-column justify-content-center">
+                    <canvas id="enrollmentChart" width="100%" height="250"></canvas>
+                    <div class="text-center mt-3">
+                        <div class="d-flex justify-content-center">
+                            <div class="d-flex align-items-center me-3">
+                                <div class="me-2" style="width: 12px; height: 12px; background-color: #0d6efd; border-radius: 50%;"></div>
+                                <span class="small">Đã đăng ký: @totalEnrollments học viên</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Dữ liệu cho biểu đồ
+        const courseNames = @Html.Raw(Json.Serialize(Model.Select(m => m.Course.CourseName).ToList()));
+        const enrollmentCounts = @Html.Raw(Json.Serialize(Model.Select(m => m.EnrollmentCount).ToList()));
+        
+        // Tạo mảng màu ngẫu nhiên
+        const generateColors = (count) => {
+            const colors = [
+                '#0d6efd', '#6610f2', '#6f42c1', '#d63384', '#dc3545', 
+                '#fd7e14', '#ffc107', '#198754', '#20c997', '#0dcaf0'
+            ];
+            return Array.from({ length: count }, (_, i) => colors[i % colors.length]);
+        };
+        
+        // Vẽ biểu đồ
+        const ctx = document.getElementById('enrollmentChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: courseNames,
+                datasets: [{
+                    data: enrollmentCounts,
+                    backgroundColor: generateColors(courseNames.length),
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            boxWidth: 12,
+                            font: {
+                                size: 10
+                            }
+                        }
+                    }
+                },
+                animation: {
+                    animateScale: true,
+                    animateRotate: true
+                }
+            }
+        });
+    </script>
+}
