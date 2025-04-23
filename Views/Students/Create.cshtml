@@ -1,4 +1,4 @@
-@model QuanLyTrungTam.Models.Student
+@* @model QuanLyTrungTam.Models.Student
 
 @{
     ViewData["Title"] = "Create";
@@ -55,4 +55,175 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+} *@
+@model QuanLyTrungTam.Models.Student
+
+@{
+    ViewData["Title"] = "Thêm học viên mới";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="display-5 fw-bold text-primary">
+            <i class="bi bi-person-plus-fill me-2"></i>Thêm học viên mới
+        </h1>
+        <a asp-action="Index" class="btn btn-outline-primary">
+            <i class="bi bi-arrow-left me-2"></i>Quay lại danh sách
+        </a>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-header bg-white">
+                    <h5 class="mb-0"><i class="bi bi-pencil-square me-2"></i>Thông tin học viên</h5>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Create" id="createForm">
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+                        
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <input asp-for="FullName" class="form-control" placeholder="Họ và tên" />
+                                    <label asp-for="FullName">Họ và tên</label>
+                                    <span asp-validation-for="FullName" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <input asp-for="DateOfBirth" class="form-control" type="date" placeholder="Ngày sinh" />
+                                    <label asp-for="DateOfBirth">Ngày sinh</label>
+                                    <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <input asp-for="PhoneNumber" class="form-control" placeholder="Số điện thoại" />
+                                    <label asp-for="PhoneNumber">Số điện thoại</label>
+                                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <input asp-for="Email" class="form-control" placeholder="Email" type="email" />
+                                    <label asp-for="Email">Email</label>
+                                    <span asp-validation-for="Email" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <hr class="my-4" />
+                        <h6 class="mb-3"><i class="bi bi-shield-lock me-2"></i>Thông tin đăng nhập</h6>
+                        
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <input asp-for="Username" class="form-control" placeholder="Tên đăng nhập" />
+                                    <label asp-for="Username">Tên đăng nhập</label>
+                                    <span asp-validation-for="Username" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <input asp-for="Password" class="form-control" placeholder="Mật khẩu" type="password" id="password" />
+                                    <label asp-for="Password">Mật khẩu</label>
+                                    <span asp-validation-for="Password" class="text-danger"></span>
+                                </div>
+                                <div class="progress mt-1" style="height: 5px;">
+                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 0%;" id="passwordStrength"></div>
+                                </div>
+                                <small class="form-text text-muted" id="passwordFeedback">Mật khẩu phải có ít nhất 6 ký tự</small>
+                            </div>
+                        </div>
+                        
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+                            <a asp-action="Index" class="btn btn-outline-secondary me-md-2">
+                                <i class="bi bi-x-circle me-2"></i>Hủy
+                            </a>
+                            <button type="submit" class="btn btn-primary" id="submitButton">
+                                <i class="bi bi-check-circle me-2"></i>Lưu học viên
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <div class="card-header bg-white">
+                    <h5 class="mb-0"><i class="bi bi-info-circle me-2"></i>Hướng dẫn</h5>
+                </div>
+                <div class="card-body">
+                    <p><i class="bi bi-check-circle text-success me-2"></i>Điền đầy đủ thông tin cá nhân của học viên.</p>
+                    <p><i class="bi bi-check-circle text-success me-2"></i>Tên đăng nhập phải là duy nhất trong hệ thống.</p>
+                    <p><i class="bi bi-check-circle text-success me-2"></i>Mật khẩu nên bao gồm chữ hoa, chữ thường, số và ký tự đặc biệt.</p>
+                    <p><i class="bi bi-exclamation-triangle text-warning me-2"></i>Học viên sẽ sử dụng thông tin đăng nhập này để truy cập vào hệ thống.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        $(document).ready(function() {
+            // Kiểm tra độ mạnh của mật khẩu
+            $("#password").on("keyup", function() {
+                var password = $(this).val();
+                var strength = 0;
+                
+                if (password.length >= 6) strength += 1;
+                if (password.match(/[a-z]+/)) strength += 1;
+                if (password.match(/[A-Z]+/)) strength += 1;
+                if (password.match(/[0-9]+/)) strength += 1;
+                if (password.match(/[^a-zA-Z0-9]+/)) strength += 1;
+                
+                var progressBar = $("#passwordStrength");
+                var feedback = $("#passwordFeedback");
+                
+                // Cập nhật thanh tiến trình
+                progressBar.css("width", (strength * 20) + "%");
+                
+                // Cập nhật màu sắc và phản hồi
+                switch (strength) {
+                    case 0:
+                    case 1:
+                        progressBar.removeClass().addClass("progress-bar bg-danger");
+                        feedback.text("Mật khẩu yếu");
+                        break;
+                    case 2:
+                        progressBar.removeClass().addClass("progress-bar bg-warning");
+                        feedback.text("Mật khẩu trung bình");
+                        break;
+                    case 3:
+                        progressBar.removeClass().addClass("progress-bar bg-info");
+                        feedback.text("Mật khẩu khá");
+                        break;
+                    case 4:
+                        progressBar.removeClass().addClass("progress-bar bg-primary");
+                        feedback.text("Mật khẩu mạnh");
+                        break;
+                    case 5:
+                        progressBar.removeClass().addClass("progress-bar bg-success");
+                        feedback.text("Mật khẩu rất mạnh");
+                        break;
+                }
+            });
+            
+            // Hiệu ứng khi submit form
+            $("#createForm").on("submit", function() {
+                if ($(this).valid()) {
+                    $("#submitButton").attr("disabled", true);
+                    $("#submitButton").html('<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Đang lưu...');
+                    return true;
+                }
+                return false;
+            });
+        });
+    </script>
 }
