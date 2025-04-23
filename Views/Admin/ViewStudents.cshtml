@@ -1,4 +1,4 @@
-@model List<QuanLyTrungTam.ViewModels.StudentInCourseViewModel>
+@* @model List<QuanLyTrungTam.ViewModels.StudentInCourseViewModel>
 
 @{
     ViewData["Title"] = "Registered Students";
@@ -28,4 +28,152 @@
             </tr>
         }
     </tbody>
-</table>
+</table> *@
+@model List<QuanLyTrungTam.ViewModels.StudentInCourseViewModel>
+
+@{
+    ViewData["Title"] = "Danh sách học viên";
+    var course = ViewBag.Course as QuanLyTrungTam.Models.Course;
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="display-5 fw-bold text-primary">
+            <i class="bi bi-people-fill me-2"></i>Danh sách học viên
+        </h1>
+        <a href="javascript:history.back()" class="btn btn-outline-primary">
+            <i class="bi bi-arrow-left me-2"></i>Quay lại
+        </a>
+    </div>
+
+    <div class="card shadow-sm mb-4">
+        <div class="card-header bg-white">
+            <h5 class="mb-0">Thông tin khóa học</h5>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <p><strong><i class="bi bi-journal-text me-2"></i>Tên khóa học:</strong> @course.CourseName</p>
+                    <p><strong><i class="bi bi-person-fill me-2"></i>Giảng viên:</strong> @course.Lecturer</p>
+                </div>
+                <div class="col-md-6">
+                    <p><strong><i class="bi bi-calendar-event me-2"></i>Ngày khai giảng:</strong> @course.StartDate.ToString("dd/MM/yyyy")</p>
+                    <p><strong><i class="bi bi-people me-2"></i>Số lượng học viên:</strong> @Model.Count / @course.MaxStudents</p>
+                </div>
+            </div>
+            <div class="progress mt-2" style="height: 10px;">
+                @{
+                    var percentFilled = course.MaxStudents > 0 ? (Model.Count * 100 / course.MaxStudents) : 0;
+                }
+                <div class="progress-bar @(percentFilled > 80 ? "bg-danger" : "bg-success")" 
+                     role="progressbar" 
+                     style="width: @percentFilled%;" 
+                     aria-valuenow="@percentFilled" 
+                     aria-valuemin="0" 
+                     aria-valuemax="100">
+                    @percentFilled%
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card shadow-sm">
+        <div class="card-header bg-white d-flex justify-content-between align-items-center">
+            <h5 class="mb-0"><i class="bi bi-table me-2"></i>Danh sách học viên đã đăng ký</h5>
+            <div class="input-group" style="width: 300px;">
+                <input type="text" id="searchInput" class="form-control" placeholder="Tìm kiếm học viên...">
+                <button class="btn btn-outline-secondary" type="button">
+                    <i class="bi bi-search"></i>
+                </button>
+            </div>
+        </div>
+        <div class="card-body">
+            @if (Model.Count == 0)
+            {
+                <div class="alert alert-info">
+                    <i class="bi bi-info-circle me-2"></i>Chưa có học viên nào đăng ký khóa học này.
+                </div>
+            }
+            else
+            {
+                <div class="table-responsive">
+                    <table class="table table-hover" id="studentsTable">
+                        <thead class="table-light">
+                            <tr>
+                                <th>STT</th>
+                                <th>Mã học viên</th>
+                                <th>Họ và tên</th>
+                                <th>Số điện thoại</th>
+                                <th>Thời gian đăng ký</th>
+                                <th>Trạng thái</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var student in Model)
+                            {
+                                var isRecent = (DateTime.Now - student.RegisteredAt).TotalDays < 3;
+                                
+                                <tr>
+                                    <td>@student.STT</td>
+                                    <td>@student.StudentId</td>
+                                    <td>@student.FullName</td>
+                                    <td>@student.Phone</td>
+                                    <td>@student.RegisteredAt.ToString("dd/MM/yyyy HH:mm")</td>
+                                    <td>
+                                        @if (isRecent)
+                                        {
+                                            <span class="badge bg-success">Mới đăng ký</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge bg-primary">Đã xác nhận</span>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="d-flex justify-content-between align-items-center mt-3">
+                    <div>
+                        <span class="text-muted">Hiển thị @Model.Count học viên</span>
+                    </div>
+                    <div>
+                        <button class="btn btn-success" onclick="exportToExcel()">
+                            <i class="bi bi-file-earmark-excel me-2"></i>Xuất Excel
+                        </button>
+                        <button class="btn btn-primary ms-2" onclick="printTable()">
+                            <i class="bi bi-printer me-2"></i>In danh sách
+                        </button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            // Tìm kiếm học viên
+            $("#searchInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#studentsTable tbody tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+        
+        // Hàm xuất Excel
+        function exportToExcel() {
+            alert("Chức năng xuất Excel sẽ được triển khai sau!");
+            // Trong thực tế, bạn sẽ gọi một API để xuất Excel
+        }
+        
+        // Hàm in danh sách
+        function printTable() {
+            window.print();
+        }
+    </script>
+}

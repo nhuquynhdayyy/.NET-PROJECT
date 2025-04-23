@@ -79,6 +79,12 @@ namespace QuanLyTrungTam.Controllers
                 return RedirectToAction("AccessDenied", "Account");
             }
 
+            var course = _context.Courses.FirstOrDefault(c => c.CourseId == courseId);
+            if (course == null)
+            {
+                return NotFound(); // hoặc Redirect với thông báo
+            }
+
             var students = _context.Enrollments
                 .Include(e => e.Student)
                 .Where(e => e.CourseId == courseId)
@@ -93,7 +99,7 @@ namespace QuanLyTrungTam.Controllers
                 })
                 .ToList();
 
-
+            ViewBag.Course = course;
             ViewBag.CourseId = courseId;
             return View(students); // Trỏ tới Views/Admin/ViewStudents.cshtml
         }
