@@ -20,10 +20,20 @@ namespace QuanLyTrungTam.Controllers
         }
 
         // GET: Courses
+        // public async Task<IActionResult> Index()
+        // {
+        //     return View(await _context.Courses.ToListAsync());
+            
+        // }
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Courses.ToListAsync());
+            var courses = await _context.Courses
+                .Include(c => c.Enrollments) // 👈 Thêm dòng này
+                .ToListAsync();
+
+            return View(courses);
         }
+
 
         // GET: Courses/Details/5
         public async Task<IActionResult> Details(int? id)
