@@ -84,6 +84,15 @@ namespace QuanLyTrungTam.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("StudentId,FullName,DateOfBirth,PhoneNumber,Email,Username,Password")] Student student)
         {
+            // Kiểm tra tên đăng nhập đã tồn tại
+            bool usernameExists = await _context.Students.AnyAsync(s => s.Username == student.Username);
+            
+            if (usernameExists)
+            {
+                ModelState.AddModelError("Username", "Tên đăng nhập đã tồn tại. Vui lòng chọn tên khác.");
+                return View(student);
+            }
+            
             if (ModelState.IsValid)
             {
                 _context.Add(student);
