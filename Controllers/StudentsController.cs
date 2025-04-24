@@ -115,6 +115,28 @@ namespace QuanLyTrungTam.Controllers
             };
 
             return View(viewModel); // Trả ViewModel vào View
+            // // Lấy vai trò từ Session
+            // var role = HttpContext.Session.GetInt32("Role");
+
+            // if (role == 1)
+            // {
+            //     var courses = student.Enrollments
+            //         .Select(e => e.Course)
+            //         .ToList();
+
+            //     var viewModel = new StudentDetailsViewModel
+            //     {
+            //         Student = student,
+            //         Courses = courses
+            //     };
+
+            //     return View(viewModel);
+            // }
+            // else
+            // {
+            //     // Chuyển sang action Details (hoặc trang cá nhân student)
+            //     return RedirectToAction("Details", new { id = student.StudentId });
+            // }
         }
 
 
@@ -147,7 +169,18 @@ namespace QuanLyTrungTam.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                // return RedirectToAction(nameof(Index));
+                // 🔁 Điều hướng theo vai trò
+                var role = HttpContext.Session.GetInt32("Role");
+
+                if (role == 1)
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return RedirectToAction("Details", new { id = student.StudentId });
+                }
             }
             return View(student);
         }

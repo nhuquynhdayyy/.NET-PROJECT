@@ -69,12 +69,6 @@
                                 <div class="alert alert-light border mt-3 mb-0">
                                     <div class="d-flex justify-content-between align-items-center">
                                         <span><i class="bi bi-clock-history me-2"></i>Còn @daysLeft ngày</span>
-                                        @* <form asp-action="Cancel" asp-controller="Enrollment" method="post" onsubmit="return confirm('Bạn có chắc chắn muốn hủy đăng ký khóa học này?');">
-                                            <input type="hidden" name="enrollmentId" value="@item.EnrollmentId" />
-                                            <button type="submit" class="btn btn-outline-danger btn-sm">
-                                                <i class="bi bi-x-circle me-1"></i>Hủy đăng ký
-                                            </button>
-                                        </form> *@
                                         <form class="cancel-form" method="post" asp-action="Cancel" asp-controller="Enrollment">
                                             <input type="hidden" name="enrollmentId" value="@item.EnrollmentId" />
                                             <button type="submit" class="btn btn-outline-danger btn-sm">
