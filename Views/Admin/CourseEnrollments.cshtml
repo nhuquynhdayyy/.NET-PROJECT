@@ -1,32 +1,3 @@
-@* @model List<QuanLyTrungTam.ViewModels.CourseEnrollmentStatsViewModel>
-
-<h2>Statistics of Student Enrollments by Course</h2>
-
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>Course Id</th>
-            <th>Course Name</th>
-            <th>Enrollment Count</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>@item.Course.CourseId</td>
-                <td>@item.Course.CourseName</td>
-                <td>@item.EnrollmentCount</td>
-                <td>
-                    <a asp-controller="Admin" asp-action="ViewStudents" asp-route-courseId="@item.Course.CourseId" class="btn btn-info btn-sm">
-                        View Students
-                    </a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table> *@
 @model List<QuanLyTrungTam.ViewModels.CourseEnrollmentStatsViewModel>
 @{
     ViewData["Title"] = "Thống kê đăng ký khóa học";

@@ -1,59 +1,3 @@
-@* @model List<QuanLyTrungTam.Models.Course>
-
-<h2>Available Courses</h2>
-
-<table class="table table-bordered table-hover">
-    <thead class="table-dark">
-        <tr>
-            <th>Course Id</th>
-            <th>Course Name</th>
-            <th>Lecturer</th>
-            <th>Start Date</th>
-            <th>Tuition Fee</th>
-            <th>Max Students</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var course in Model)
-        {
-            <tr>
-                <td>@course.CourseId</td>
-                <td>@course.CourseName</td>
-                <td>@course.Lecturer</td>
-                <td>@course.StartDate.ToString("dd/MM/yyyy")</td>
-                <td>@String.Format(new System.Globalization.CultureInfo("vi-VN"), "{0:C0}", course.TuitionFee)</td>
-                <td>@course.MaxStudents</td>
-                <td>
-                    @{
-                        var studentId = Context.Session.GetInt32("StudentId");
-                        var role = Context.Session.GetInt32("Role");
-                    }
-
-                    @if (studentId != null)
-                    {
-                        @if (role == 1) {
-                            <a asp-controller="Admin" asp-action="ViewStudents" asp-route-courseId="@course.CourseId" class="btn btn-info btn-sm">
-                                View Students
-                            </a>
-                        } else {
-                            <form asp-controller="Enrollment" asp-action="Register" method="post">
-                                <input type="hidden" name="courseId" value="@course.CourseId" />
-                                <button type="submit" class="btn btn-success">Register</button>
-                            </form>
-                        }
-                    }
-                    else
-                    {
-                        <a href="/Account/Login" class="btn btn-primary">Login to Register</a>
-                    }
-
-                </td>
-            </tr>
-        }
-    </tbody>
-</table> *@
-<!-- Views/Home/CoursesForStudent.cshtml -->
 @model IEnumerable<QuanLyTrungTam.Models.Course>
 @{
     ViewData["Title"] = "Khóa học";
@@ -65,6 +9,7 @@
             <h1 class="display-5 fw-bold text-primary">Khóa học hiện có</h1>
             <p class="lead">Khám phá các khóa học chất lượng cao tại trung tâm của chúng tôi</p>
         </div>
+
         <div class="col-md-6">
             <div class="input-group mt-3">
                 <input type="text" id="searchInput" class="form-control" placeholder="Tìm kiếm khóa học...">
@@ -112,10 +57,6 @@
                         }
                     </div>
                     <div class="card-body">
-                        @* <div class="text-center mb-3">
-                            <img src="/images/course-@(course.CourseId).jpg" class="img-fluid rounded" alt="@course.CourseName" 
-                                 style="height: 150px; object-fit: cover;">
-                        </div> *@
                         @{
                             var courseImage = $"/images/course-{course.CourseId}.jpg";
                             var physicalPath = System.IO.Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", $"images/course-{course.CourseId}.jpg");
@@ -124,8 +65,9 @@
                         }
 
                         <div class="text-center mb-3">
-                            <img src="@displayImage" class="img-fluid rounded" alt="@course.CourseName" 
-                                style="height: 150px; object-fit: cover;">
+                            <img src="@displayImage" class="img-fluid rounded" alt="@course.CourseName"
+                                style="width: 100%; height: 150px; object-fit: cover; object-position: center;">
+
                         </div>
 
                         <p class="card-text"><i class="bi bi-person-fill me-2"></i><strong>Giảng viên:</strong> @course.Lecturer</p>

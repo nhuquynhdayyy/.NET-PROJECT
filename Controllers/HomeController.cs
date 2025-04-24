@@ -20,11 +20,6 @@ public class HomeController : Controller
     public IActionResult Index()
     {
         return View();
-        
-        // var courses = _context.Courses
-        //     .Include(c => c.Enrollments) // 👈 dòng quan trọng để lấy số lượng đăng ký
-        //     .ToList();
-        // return View("CoursesForStudent", courses); 
     }
 
     public IActionResult Privacy()
@@ -34,7 +29,7 @@ public class HomeController : Controller
     public IActionResult CoursesForStudent()
     {
         var courses = _context.Courses
-            .Include(c => c.Enrollments) // 👈 dòng quan trọng để lấy số lượng đăng ký
+            .Include(c => c.Enrollments) 
             .ToList();
         return View("CoursesForStudent", courses); 
     }
@@ -45,16 +40,4 @@ public class HomeController : Controller
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
 
-    // public IActionResult CourseEnrollments()
-    // {
-    //     var data = _context.Courses
-    //         .Select(c => new CourseEnrollmentStatsViewModel
-    //         {
-    //             Course = c,
-    //             EnrollmentCount = c.Enrollments.Count()
-    //         })
-    //         .ToList();
-
-    //     return View(data);
-    // }
 }

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "alBumtywD+AEiDB2Tw2SKODRxL3+TmedPIYt1tbepz0=",
+  "Hash": "RbZzIgRDV3eWp0U0y0iLQpqZO+EoDG2nYC94s+Jw5Gw=",
   "Source": "QuanLyTrungTam",
   "BasePath": "_content/QuanLyTrungTam",
   "Mode": "Default",
@@ -962,12 +962,12 @@
       "OriginalItemSpec": "C:\\Users\\Admin\\OneDrive - The University of Technology\\Desktop\\.NET PROJECT\\QuanLyTrungTam\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
     },
     {
-      "Identity": "C:\\Users\\Admin\\OneDrive - The University of Technology\\Desktop\\.NET PROJECT\\QuanLyTrungTam\\obj\\Debug\\net9.0\\compressed\\oyj6t3ph2y-rb7aotubwt.gz",
+      "Identity": "C:\\Users\\Admin\\OneDrive - The University of Technology\\Desktop\\.NET PROJECT\\QuanLyTrungTam\\obj\\Debug\\net9.0\\compressed\\oyj6t3ph2y-v497eh6lxx.gz",
       "SourceId": "QuanLyTrungTam",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\Admin\\OneDrive - The University of Technology\\Desktop\\.NET PROJECT\\QuanLyTrungTam\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "_content/QuanLyTrungTam",
-      "RelativePath": "css/site#[.{fingerprint=rb7aotubwt}]?.css.gz",
+      "RelativePath": "css/site#[.{fingerprint=v497eh6lxx}]?.css.gz",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Alternative",
@@ -976,8 +976,8 @@
       "RelatedAsset": "C:\\Users\\Admin\\OneDrive - The University of Technology\\Desktop\\.NET PROJECT\\QuanLyTrungTam\\wwwroot\\css\\site.css",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "8n5lkbclap",
-      "Integrity": "LFA9zELel6bulhr6+pMS8gNO/hLSXP2HxEXACUSEsq4=",
+      "Fingerprint": "7dr5yio3ph",
+      "Integrity": "y0OsYqBaBdwnAMtJRpFxw553jbAf7pWO319BPiYO608=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\Admin\\OneDrive - The University of Technology\\Desktop\\.NET PROJECT\\QuanLyTrungTam\\wwwroot\\css\\site.css"
@@ -1417,8 +1417,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "rb7aotubwt",
-      "Integrity": "l483nALRWjtxoH/TpJe7vlA01t9v9kl/pAysRD9a91s=",
+      "Fingerprint": "v497eh6lxx",
+      "Integrity": "/3uLtytD6nNyBL/o4WAw29BzmBxCJuhCzIKKMD29gs0=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
@@ -2813,12 +2813,12 @@
   "Endpoints": [
     {
       "Route": "css/site.css",
-      "AssetFile": "C:\\Users\\Admin\\OneDrive - The University of Technology\\Desktop\\.NET PROJECT\\QuanLyTrungTam\\obj\\Debug\\net9.0\\compressed\\oyj6t3ph2y-rb7aotubwt.gz",
+      "AssetFile": "C:\\Users\\Admin\\OneDrive - The University of Technology\\Desktop\\.NET PROJECT\\QuanLyTrungTam\\obj\\Debug\\net9.0\\compressed\\oyj6t3ph2y-v497eh6lxx.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.000974658869"
+          "Quality": "0.001121076233"
         }
       ],
       "ResponseHeaders": [
@@ -2828,15 +2828,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1025"
+          "Value": "891"
         },
         {
           "Name": "ETag",
-          "Value": "\"LFA9zELel6bulhr6+pMS8gNO/hLSXP2HxEXACUSEsq4=\""
+          "Value": "\"y0OsYqBaBdwnAMtJRpFxw553jbAf7pWO319BPiYO608=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 24 Apr 2025 08:10:35 GMT"
+          "Value": "Thu, 24 Apr 2025 09:25:58 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2856,13 +2856,13 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"l483nALRWjtxoH/TpJe7vlA01t9v9kl/pAysRD9a91s=\""
+          "Value": "W/\"/3uLtytD6nNyBL/o4WAw29BzmBxCJuhCzIKKMD29gs0=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-l483nALRWjtxoH/TpJe7vlA01t9v9kl/pAysRD9a91s="
+          "Value": "sha256-/3uLtytD6nNyBL/o4WAw29BzmBxCJuhCzIKKMD29gs0="
         }
       ]
     },
@@ -2877,7 +2877,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "2604"
+          "Value": "2341"
         },
         {
           "Name": "Content-Type",
@@ -2885,11 +2885,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"l483nALRWjtxoH/TpJe7vlA01t9v9kl/pAysRD9a91s=\""
+          "Value": "\"/3uLtytD6nNyBL/o4WAw29BzmBxCJuhCzIKKMD29gs0=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 24 Apr 2025 08:10:35 GMT"
+          "Value": "Thu, 24 Apr 2025 09:25:58 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2899,13 +2899,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-l483nALRWjtxoH/TpJe7vlA01t9v9kl/pAysRD9a91s="
+          "Value": "sha256-/3uLtytD6nNyBL/o4WAw29BzmBxCJuhCzIKKMD29gs0="
         }
       ]
     },
     {
       "Route": "css/site.css.gz",
-      "AssetFile": "C:\\Users\\Admin\\OneDrive - The University of Technology\\Desktop\\.NET PROJECT\\QuanLyTrungTam\\obj\\Debug\\net9.0\\compressed\\oyj6t3ph2y-rb7aotubwt.gz",
+      "AssetFile": "C:\\Users\\Admin\\OneDrive - The University of Technology\\Desktop\\.NET PROJECT\\QuanLyTrungTam\\obj\\Debug\\net9.0\\compressed\\oyj6t3ph2y-v497eh6lxx.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2914,7 +2914,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1025"
+          "Value": "891"
         },
         {
           "Name": "Content-Type",
@@ -2922,11 +2922,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"LFA9zELel6bulhr6+pMS8gNO/hLSXP2HxEXACUSEsq4=\""
+          "Value": "\"y0OsYqBaBdwnAMtJRpFxw553jbAf7pWO319BPiYO608=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 24 Apr 2025 08:10:35 GMT"
+          "Value": "Thu, 24 Apr 2025 09:25:58 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2944,18 +2944,18 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-LFA9zELel6bulhr6+pMS8gNO/hLSXP2HxEXACUSEsq4="
+          "Value": "sha256-y0OsYqBaBdwnAMtJRpFxw553jbAf7pWO319BPiYO608="
         }
       ]
     },
     {
-      "Route": "css/site.rb7aotubwt.css",
-      "AssetFile": "C:\\Users\\Admin\\OneDrive - The University of Technology\\Desktop\\.NET PROJECT\\QuanLyTrungTam\\obj\\Debug\\net9.0\\compressed\\oyj6t3ph2y-rb7aotubwt.gz",
+      "Route": "css/site.v497eh6lxx.css",
+      "AssetFile": "C:\\Users\\Admin\\OneDrive - The University of Technology\\Desktop\\.NET PROJECT\\QuanLyTrungTam\\obj\\Debug\\net9.0\\compressed\\oyj6t3ph2y-v497eh6lxx.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.000974658869"
+          "Quality": "0.001121076233"
         }
       ],
       "ResponseHeaders": [
@@ -2965,15 +2965,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1025"
+          "Value": "891"
         },
         {
           "Name": "ETag",
-          "Value": "\"LFA9zELel6bulhr6+pMS8gNO/hLSXP2HxEXACUSEsq4=\""
+          "Value": "\"y0OsYqBaBdwnAMtJRpFxw553jbAf7pWO319BPiYO608=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 24 Apr 2025 08:10:35 GMT"
+          "Value": "Thu, 24 Apr 2025 09:25:58 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2993,13 +2993,13 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"l483nALRWjtxoH/TpJe7vlA01t9v9kl/pAysRD9a91s=\""
+          "Value": "W/\"/3uLtytD6nNyBL/o4WAw29BzmBxCJuhCzIKKMD29gs0=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "rb7aotubwt"
+          "Value": "v497eh6lxx"
         },
         {
           "Name": "label",
@@ -3007,12 +3007,12 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-l483nALRWjtxoH/TpJe7vlA01t9v9kl/pAysRD9a91s="
+          "Value": "sha256-/3uLtytD6nNyBL/o4WAw29BzmBxCJuhCzIKKMD29gs0="
         }
       ]
     },
     {
-      "Route": "css/site.rb7aotubwt.css",
+      "Route": "css/site.v497eh6lxx.css",
       "AssetFile": "C:\\Users\\Admin\\OneDrive - The University of Technology\\Desktop\\.NET PROJECT\\QuanLyTrungTam\\wwwroot\\css\\site.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -3022,7 +3022,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "2604"
+          "Value": "2341"
         },
         {
           "Name": "Content-Type",
@@ -3030,11 +3030,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"l483nALRWjtxoH/TpJe7vlA01t9v9kl/pAysRD9a91s=\""
+          "Value": "\"/3uLtytD6nNyBL/o4WAw29BzmBxCJuhCzIKKMD29gs0=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 24 Apr 2025 08:10:35 GMT"
+          "Value": "Thu, 24 Apr 2025 09:25:58 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3044,7 +3044,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "rb7aotubwt"
+          "Value": "v497eh6lxx"
         },
         {
           "Name": "label",
@@ -3052,13 +3052,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-l483nALRWjtxoH/TpJe7vlA01t9v9kl/pAysRD9a91s="
+          "Value": "sha256-/3uLtytD6nNyBL/o4WAw29BzmBxCJuhCzIKKMD29gs0="
         }
       ]
     },
     {
-      "Route": "css/site.rb7aotubwt.css.gz",
-      "AssetFile": "C:\\Users\\Admin\\OneDrive - The University of Technology\\Desktop\\.NET PROJECT\\QuanLyTrungTam\\obj\\Debug\\net9.0\\compressed\\oyj6t3ph2y-rb7aotubwt.gz",
+      "Route": "css/site.v497eh6lxx.css.gz",
+      "AssetFile": "C:\\Users\\Admin\\OneDrive - The University of Technology\\Desktop\\.NET PROJECT\\QuanLyTrungTam\\obj\\Debug\\net9.0\\compressed\\oyj6t3ph2y-v497eh6lxx.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3067,7 +3067,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1025"
+          "Value": "891"
         },
         {
           "Name": "Content-Type",
@@ -3075,11 +3075,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"LFA9zELel6bulhr6+pMS8gNO/hLSXP2HxEXACUSEsq4=\""
+          "Value": "\"y0OsYqBaBdwnAMtJRpFxw553jbAf7pWO319BPiYO608=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 24 Apr 2025 08:10:35 GMT"
+          "Value": "Thu, 24 Apr 2025 09:25:58 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3097,7 +3097,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "rb7aotubwt"
+          "Value": "v497eh6lxx"
         },
         {
           "Name": "label",
@@ -3105,7 +3105,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-LFA9zELel6bulhr6+pMS8gNO/hLSXP2HxEXACUSEsq4="
+          "Value": "sha256-y0OsYqBaBdwnAMtJRpFxw553jbAf7pWO319BPiYO608="
         }
       ]
     },
