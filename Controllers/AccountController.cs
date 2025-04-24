@@ -4,10 +4,11 @@ using QuanLyTrungTam.Data;
 using QuanLyTrungTam.ViewModels;
 using System.Security.Cryptography;
 using System.Text;
+using QuanLyTrungTam.Controllers;
 
 namespace TrainingCenterApp.Controllers
 {
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
         private readonly AppDbContext _context;
 
@@ -76,14 +77,28 @@ namespace TrainingCenterApp.Controllers
 
                 if (user != null)
                 {
-                    // Store user info in session
-                    HttpContext.Session.SetString("Username", user.Username);
-                    HttpContext.Session.SetInt32("Role", user.Role);
-                    HttpContext.Session.SetInt32("StudentId", user.StudentId);
+                    if (model.RememberMe)
+                    {
+                        // Ghi nhớ đăng nhập qua cookie
+                        CookieOptions option = new CookieOptions
+                        {
+                            Expires = DateTime.Now.AddDays(7), // Sống 7 ngày
+                            HttpOnly = true,
+                            IsEssential = true
+                        };
 
-                    // if (user.Role == 1)
-                    //     return RedirectToAction("Dashboard", "Admin");
-                    // else
+                        Response.Cookies.Append("Username", user.Username, option);
+                        Response.Cookies.Append("Role", user.Role.ToString(), option);
+                        Response.Cookies.Append("StudentId", user.StudentId.ToString(), option);
+                    }
+                    else
+                    {
+                        // Nếu không ghi nhớ thì lưu bằng session
+                        HttpContext.Session.SetString("Username", user.Username);
+                        HttpContext.Session.SetInt32("Role", user.Role);
+                        HttpContext.Session.SetInt32("StudentId", user.StudentId);
+                    }
+
                     return RedirectToAction("Index", "Home");
                 }
 
@@ -97,7 +112,10 @@ namespace TrainingCenterApp.Controllers
         public IActionResult Logout()
         {
             HttpContext.Session.Clear();
-            return RedirectToAction("Login");
+            Response.Cookies.Delete("Username");
+            Response.Cookies.Delete("Role");
+            Response.Cookies.Delete("StudentId");
+            return RedirectToAction("Index", "Home");
         }
 
         public IActionResult AccessDenied()

@@ -4,10 +4,11 @@ using QuanLyTrungTam.Models;
 using QuanLyTrungTam.Data;
 using QuanLyTrungTam.ViewModels;
 using Microsoft.EntityFrameworkCore;
+using QuanLyTrungTam.Controllers;
 
 namespace QuanLyTrungTam.Controllers;
 
-public class HomeController : Controller
+public class HomeController : BaseController
 {
     private readonly ILogger<HomeController> _logger;
     private readonly AppDbContext _context;

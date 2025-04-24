@@ -7,10 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using QuanLyTrungTam.Data;
 using QuanLyTrungTam.Models;
+using QuanLyTrungTam.Controllers;
 
 namespace QuanLyTrungTam.Controllers
 {
-    public class CoursesController : Controller
+    public class CoursesController : BaseController
     {
         private readonly AppDbContext _context;
 
@@ -20,11 +21,6 @@ namespace QuanLyTrungTam.Controllers
         }
 
         // GET: Courses
-        // public async Task<IActionResult> Index()
-        // {
-        //     return View(await _context.Courses.ToListAsync());
-            
-        // }
         public async Task<IActionResult> Index()
         {
             var courses = await _context.Courses
@@ -36,22 +32,6 @@ namespace QuanLyTrungTam.Controllers
 
 
         // GET: Courses/Details/5
-        // public async Task<IActionResult> Details(int? id)
-        // {
-        //     if (id == null)
-        //     {
-        //         return NotFound();
-        //     }
-
-        //     var course = await _context.Courses
-        //         .FirstOrDefaultAsync(m => m.CourseId == id);
-        //     if (course == null)
-        //     {
-        //         return NotFound();
-        //     }
-
-        //     return View(course);
-        // }
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -60,7 +40,7 @@ namespace QuanLyTrungTam.Controllers
             }
 
             var course = await _context.Courses
-                .Include(c => c.Enrollments) // 👈 Include Enrollments nè!
+                .Include(c => c.Enrollments)
                 .FirstOrDefaultAsync(m => m.CourseId == id);
 
             if (course == null)
@@ -84,9 +64,6 @@ namespace QuanLyTrungTam.Controllers
         {
             if (ModelState.IsValid)
             {
-                // _context.Add(course);
-                // await _context.SaveChangesAsync();
-                // return RedirectToAction(nameof(Index));
                 // Bước 1: Thêm khóa học vào DB
                 _context.Add(course);
                 await _context.SaveChangesAsync(); // CourseId được sinh ra tại đây
@@ -121,7 +98,6 @@ namespace QuanLyTrungTam.Controllers
                 return NotFound();
             }
 
-            // var course = await _context.Courses.FindAsync(id);
             var course = await _context.Courses
                 .Include(c => c.Enrollments)
                 .FirstOrDefaultAsync(c => c.CourseId == id);

@@ -5,10 +5,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
+using QuanLyTrungTam.Controllers;
 
 namespace QuanLyTrungTam.Controllers
 {
-    public class EnrollmentController : Controller
+    public class EnrollmentController : BaseController
     {
         private readonly AppDbContext _context;
 

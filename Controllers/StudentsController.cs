@@ -8,10 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using QuanLyTrungTam.Data;
 using QuanLyTrungTam.Models;
 using QuanLyTrungTam.ViewModels; 
+using QuanLyTrungTam.Controllers;
 
 namespace QuanLyTrungTam.Controllers
 {
-    public class StudentsController : Controller
+    public class StudentsController : BaseController
     {
         private readonly AppDbContext _context;
 
@@ -31,23 +32,6 @@ namespace QuanLyTrungTam.Controllers
         }
 
         // GET: Students/Details/5
-        // public async Task<IActionResult> Details(int? id)
-        // {
-        //     if (id == null)
-        //     {
-        //         return NotFound();
-        //     }
-
-        //     var student = await _context.Students
-        //         .FirstOrDefaultAsync(m => m.StudentId == id);
-        //     if (student == null)
-        //     {
-        //         return NotFound();
-        //     }
-
-        //     return View(student);
-        // }
-
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null) return NotFound();
@@ -103,20 +87,6 @@ namespace QuanLyTrungTam.Controllers
         }
 
         // GET: Students/Edit/5
-        // public async Task<IActionResult> Edit(int? id)
-        // {
-        //     if (id == null)
-        //     {
-        //         return NotFound();
-        //     }
-
-        //     var student = await _context.Students.FindAsync(id);
-        //     if (student == null)
-        //     {
-        //         return NotFound();
-        //     }
-        //     return View(student);
-        // }
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -242,22 +212,5 @@ namespace QuanLyTrungTam.Controllers
 
             return View(courseList);
         }
-
-        // [HttpGet]
-        // public IActionResult GetRegisteredCourses(int studentId)
-        // {
-        //     var courses = _context.Enrollments
-        //         .Include(r => r.Course)
-        //         .Where(r => r.StudentId == studentId)
-        //         .Select(r => new {
-        //             courseName = r.Course.CourseName,
-        //             // description = r.Course.Description,
-        //             fee = r.Course.TuitionFee
-        //         })
-        //         .ToList();
-
-        //     return Json(courses);
-        // }
-
     }
 }

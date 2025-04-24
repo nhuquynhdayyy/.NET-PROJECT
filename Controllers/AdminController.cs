@@ -5,10 +5,11 @@ using QuanLyTrungTam.Models;
 using QuanLyTrungTam.ViewModels;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using QuanLyTrungTam.Controllers;
 
 namespace QuanLyTrungTam.Controllers
 {
-    public class AdminController : Controller
+    public class AdminController : BaseController
     {
         private readonly AppDbContext _context;
 
@@ -27,9 +28,6 @@ namespace QuanLyTrungTam.Controllers
                 return RedirectToAction("AccessDenied", "Account");
             }
 
-            // ViewBag.TotalStudents = _context.Students.Count();
-            // ViewBag.TotalCourses = _context.Courses.Count();
-            // ViewBag.TotalEnrollments = _context.Enrollments.Count();
             var model = new DashboardViewModel
             {
                 TotalStudents = _context.Students.Count(s => s.Role == 0),
@@ -38,7 +36,6 @@ namespace QuanLyTrungTam.Controllers
             };
             return View(model);
 
-            // return View();
         }
 
         public IActionResult RevenueReport(DateTime? startDate, DateTime? endDate)
