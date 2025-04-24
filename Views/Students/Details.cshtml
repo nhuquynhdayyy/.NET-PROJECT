@@ -160,7 +160,8 @@
                                 <li class="list-group-item">
                                     <h6 class="mb-1">@course.CourseName</h6>
                                     <p class="mb-0 text-muted">Giảng viên: @course.Lecturer</p>
-                                    <small class="text-success fw-bold">Học phí: @course.TuitionFee.ToString("C")</small>
+                                    @* <small class="text-success fw-bold">Học phí: @course.TuitionFee.ToString("C")</small> *@
+                                    <small class="text-success fw-bold">Học phí: @String.Format(new System.Globalization.CultureInfo("vi-VN"), "{0:C0}", course.TuitionFee)</small>
                                 </li>
                             }
                         </ul>

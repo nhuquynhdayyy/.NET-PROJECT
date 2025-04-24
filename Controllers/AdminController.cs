@@ -103,6 +103,17 @@ namespace QuanLyTrungTam.Controllers
             ViewBag.CourseId = courseId;
             return View(students); // Trỏ tới Views/Admin/ViewStudents.cshtml
         }
+        public IActionResult CourseEnrollments()
+        {
+            var data = _context.Courses
+                .Select(c => new CourseEnrollmentStatsViewModel
+                {
+                    Course = c,
+                    EnrollmentCount = c.Enrollments.Count()
+                })
+                .ToList();
 
+            return View(data);
+        }
     }
 }

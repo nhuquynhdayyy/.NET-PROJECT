@@ -38,16 +38,16 @@ public class HomeController : Controller
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
 
-    public IActionResult CourseEnrollments()
-    {
-        var data = _context.Courses
-            .Select(c => new CourseEnrollmentStatsViewModel
-            {
-                Course = c,
-                EnrollmentCount = c.Enrollments.Count()
-            })
-            .ToList();
+    // public IActionResult CourseEnrollments()
+    // {
+    //     var data = _context.Courses
+    //         .Select(c => new CourseEnrollmentStatsViewModel
+    //         {
+    //             Course = c,
+    //             EnrollmentCount = c.Enrollments.Count()
+    //         })
+    //         .ToList();
 
-        return View(data);
-    }
+    //     return View(data);
+    // }
 }
