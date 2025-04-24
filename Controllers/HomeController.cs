@@ -19,17 +19,24 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        // return View();
-        // var courses = _context.Courses.ToList();
-        var courses = _context.Courses
-            .Include(c => c.Enrollments) // 👈 dòng quan trọng để lấy số lượng đăng ký
-            .ToList();
-        return View("CoursesForStudent", courses); 
+        return View();
+        
+        // var courses = _context.Courses
+        //     .Include(c => c.Enrollments) // 👈 dòng quan trọng để lấy số lượng đăng ký
+        //     .ToList();
+        // return View("CoursesForStudent", courses); 
     }
 
     public IActionResult Privacy()
     {
         return View();
+    }
+    public IActionResult CoursesForStudent()
+    {
+        var courses = _context.Courses
+            .Include(c => c.Enrollments) // 👈 dòng quan trọng để lấy số lượng đăng ký
+            .ToList();
+        return View("CoursesForStudent", courses); 
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
