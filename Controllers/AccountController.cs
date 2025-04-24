@@ -72,8 +72,10 @@ namespace TrainingCenterApp.Controllers
         {
             if (ModelState.IsValid)
             {
+                // Tìm theo username hoặc email
                 var user = _context.Students.FirstOrDefault(s =>
-                    s.Username == model.Username && s.Password == model.Password);
+                    (s.Username == model.Username || s.Email == model.Username) &&
+                    s.Password == model.Password);
 
                 if (user != null)
                 {
@@ -101,8 +103,7 @@ namespace TrainingCenterApp.Controllers
 
                     return RedirectToAction("Index", "Home");
                 }
-
-                ModelState.AddModelError("", "Invalid username or password.");
+                ModelState.AddModelError("", "Tên đăng nhập/email hoặc mật khẩu không đúng.");
             }
 
             return View(model);
