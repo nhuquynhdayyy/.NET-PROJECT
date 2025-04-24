@@ -52,19 +52,27 @@
 </div>
 
 <!-- Đăng ký tư vấn -->
-<section class="py-5 bg-primary text-white mt-4">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-8 mx-auto text-center">
-                <h2 class="fw-bold mb-4">Sẵn sàng nâng cao kỹ năng của bạn?</h2>
-                <p class="lead mb-4">Đăng ký ngay hôm nay để nhận tư vấn miễn phí và ưu đãi đặc biệt cho học viên mới.</p>
-                <a class="btn btn-light" asp-controller="Account" asp-action="Register">
-                    <i class="bi bi-person-plus me-2"></i>Đăng ký ngay
-                </a>
+@{
+    var username = Context.Session.GetString("Username");
+}
+
+@if (string.IsNullOrEmpty(username))
+{
+    <section class="py-5 bg-primary text-white mt-4">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h2 class="fw-bold mb-4">Sẵn sàng nâng cao kỹ năng của bạn?</h2>
+                    <p class="lead mb-4">Đăng ký ngay hôm nay để nhận tư vấn miễn phí và ưu đãi đặc biệt cho học viên mới.</p>
+                    <a class="btn btn-light" asp-controller="Account" asp-action="Register">
+                        <i class="bi bi-person-plus me-2"></i>Đăng ký ngay
+                    </a>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+}
+
 
 @* Nếu trang này cần các file JavaScript riêng, bạn có thể thêm chúng vào đây *@
 @section Scripts {
