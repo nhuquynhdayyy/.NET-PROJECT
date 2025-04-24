@@ -30,11 +30,24 @@ namespace TrainingCenterApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Check if username exists
-                var exists = _context.Students.Any(s => s.Username == model.Username);
-                if (exists)
+                // // Check if username exists
+                // var exists = _context.Students.Any(s => s.Username == model.Username);
+                // if (exists)
+                // {
+                //     ModelState.AddModelError("Username", "Username already exists.");
+                //     return View(model);
+                // }
+                // Kiểm tra username đã tồn tại chưa
+                if (_context.Students.Any(s => s.Username == model.Username))
                 {
-                    ModelState.AddModelError("Username", "Username already exists.");
+                    ModelState.AddModelError("Username", "Tên đăng nhập đã được sử dụng.");
+                    return View(model);
+                }
+
+                // Kiểm tra email đã tồn tại chưa
+                if (_context.Students.Any(s => s.Email == model.Email))
+                {
+                    ModelState.AddModelError("Email", "Email đã được sử dụng.");
                     return View(model);
                 }
 
@@ -52,7 +65,7 @@ namespace TrainingCenterApp.Controllers
                 _context.Students.Add(student);
                 _context.SaveChanges();
 
-                TempData["Message"] = "Registration successful. Please log in.";
+                TempData["Message"] = "Đăng ký thành công. Vui lòng đăng nhập.";
                 return RedirectToAction("Login");
             }
 
