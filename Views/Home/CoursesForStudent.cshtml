@@ -40,7 +40,9 @@
     
     <div class="row row-cols-1 row-cols-md-3 g-4" id="courseContainer">
         @foreach (var course in Model)
-        {
+        {  
+            var username = Context.Session.GetString("Username");
+            var isEnrolled = course.Enrollments.Any(e => e.Student.Username == username);
             var isUpcoming = course.StartDate > DateTime.Now;
             var isAvailable = course.Enrollments.Count() < course.MaxStudents;
             var percentFilled = (int)(course.Enrollments.Count() * 100 / course.MaxStudents);
@@ -106,8 +108,8 @@
                             {
                                 <form asp-controller="Enrollment" asp-action="Register" method="post">
                                     <input type="hidden" name="courseId" value="@course.CourseId" />
-                                    <button type="submit" class="btn btn-primary w-100 @(!isAvailable || !isUpcoming ? "disabled" : "")" 
-                                            @(!isAvailable || !isUpcoming ? "disabled" : "")>
+                                    <button type="submit" class="btn btn-primary w-100 @(isAvailable && !isEnrolled ? "" : "disabled")"
+                                            @(isAvailable && !isEnrolled ? "" : "disabled")>
                                         <i class="bi bi-journal-check me-2"></i>Đăng ký
                                     </button>
                                 </form>
