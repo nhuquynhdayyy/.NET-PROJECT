@@ -140,9 +140,6 @@
                         <span class="text-muted">Hiển thị @Model.Count học viên</span>
                     </div>
                     <div>
-                        <button class="btn btn-success" onclick="exportToExcel()">
-                            <i class="bi bi-file-earmark-excel me-2"></i>Xuất Excel
-                        </button>
                         <button class="btn btn-primary ms-2" onclick="printTable()">
                             <i class="bi bi-printer me-2"></i>In danh sách
                         </button>
@@ -164,12 +161,6 @@
                 });
             });
         });
-        
-        // Hàm xuất Excel
-        function exportToExcel() {
-            alert("Chức năng xuất Excel sẽ được triển khai sau!");
-            // Trong thực tế, bạn sẽ gọi một API để xuất Excel
-        }
         
         // Hàm in danh sách
         function printTable() {

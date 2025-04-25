@@ -70,10 +70,15 @@ namespace QuanLyTrungTam.Controllers
         {
             // Kiểm tra tên đăng nhập đã tồn tại
             bool usernameExists = await _context.Students.AnyAsync(s => s.Username == student.Username);
-            
+            bool emailExists = await _context.Students.AnyAsync(s => s.Email == student.Email);
             if (usernameExists)
             {
                 ModelState.AddModelError("Username", "Tên đăng nhập đã tồn tại. Vui lòng chọn tên khác.");
+                return View(student);
+            }
+            if (emailExists)
+            {
+                ModelState.AddModelError("Email", "Email đã tồn tại. Vui lòng nhập email khác.");
                 return View(student);
             }
             
