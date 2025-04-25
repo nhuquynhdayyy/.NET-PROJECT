@@ -1,16 +1,16 @@
 ﻿<Project>
   <ItemGroup>
+    <StaticWebAssetEndpoint Include="_content/QuanLyTrungTam/css/site.9r393fceca.css">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\site.css'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"9r393fceca"},{"Name":"integrity","Value":"sha256-u8UMVBUUKVScENYG\u002BCVWU0IWHDg52Vt3TRYTPsoIH3o="},{"Name":"label","Value":"_content/QuanLyTrungTam/css/site.css"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"10532"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022u8UMVBUUKVScENYG\u002BCVWU0IWHDg52Vt3TRYTPsoIH3o=\u0022"},{"Name":"Last-Modified","Value":"Fri, 25 Apr 2025 08:57:18 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/QuanLyTrungTam/css/site.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\site.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-/3uLtytD6nNyBL/o4WAw29BzmBxCJuhCzIKKMD29gs0="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"2341"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022/3uLtytD6nNyBL/o4WAw29BzmBxCJuhCzIKKMD29gs0=\u0022"},{"Name":"Last-Modified","Value":"Thu, 24 Apr 2025 09:25:58 GMT"}]]]></ResponseHeaders>
-    </StaticWebAssetEndpoint>
-    <StaticWebAssetEndpoint Include="_content/QuanLyTrungTam/css/site.v497eh6lxx.css">
-      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\site.css'))</AssetFile>
-      <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"v497eh6lxx"},{"Name":"integrity","Value":"sha256-/3uLtytD6nNyBL/o4WAw29BzmBxCJuhCzIKKMD29gs0="},{"Name":"label","Value":"_content/QuanLyTrungTam/css/site.css"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"2341"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022/3uLtytD6nNyBL/o4WAw29BzmBxCJuhCzIKKMD29gs0=\u0022"},{"Name":"Last-Modified","Value":"Thu, 24 Apr 2025 09:25:58 GMT"}]]]></ResponseHeaders>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-u8UMVBUUKVScENYG\u002BCVWU0IWHDg52Vt3TRYTPsoIH3o="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"10532"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022u8UMVBUUKVScENYG\u002BCVWU0IWHDg52Vt3TRYTPsoIH3o=\u0022"},{"Name":"Last-Modified","Value":"Fri, 25 Apr 2025 08:57:18 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/QuanLyTrungTam/favicon.61n19gt1b8.ico">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\favicon.ico'))</AssetFile>

@@ -25,6 +25,11 @@ namespace QuanLyTrungTam.Controllers
             var userRole = HttpContext.Session.GetInt32("Role");
             return userRole == 1;
         }
+        private bool IsStudent()
+        {
+            var userRole = HttpContext.Session.GetInt32("Role");
+            return userRole == 0;
+        }
         // GET: Students
         public async Task<IActionResult> Index()
         {
@@ -108,6 +113,10 @@ namespace QuanLyTrungTam.Controllers
         // GET: Students/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            if (!IsStudent())
+            {
+                return RedirectToAction("AccessDenied", "Account");
+            }
             if (id == null)
             {
                 return NotFound();
@@ -141,6 +150,10 @@ namespace QuanLyTrungTam.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("StudentId,FullName,DateOfBirth,PhoneNumber,Email,Username,Password")] Student student)
         {
+            if (!IsStudent())
+            {
+                return RedirectToAction("AccessDenied", "Account");
+            }
             if (id != student.StudentId)
             {
                 return NotFound();
