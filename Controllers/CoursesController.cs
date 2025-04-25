@@ -20,9 +20,20 @@ namespace QuanLyTrungTam.Controllers
             _context = context;
         }
 
+        // Hàm kiểm tra quyền Admin từ Session
+        private bool IsAdmin()
+        {
+            var userRole = HttpContext.Session.GetInt32("Role");
+            return userRole == 1;
+        }
+
         // GET: Courses
         public async Task<IActionResult> Index()
         {
+            if (!IsAdmin())
+            {
+                return RedirectToAction("AccessDenied", "Account");
+            }
             var courses = await _context.Courses
                 .Include(c => c.Enrollments) // 👈 Thêm dòng này
                 .ToListAsync();
@@ -54,6 +65,10 @@ namespace QuanLyTrungTam.Controllers
         // GET: Courses/Create
         public IActionResult Create()
         {
+            if (!IsAdmin())
+            {
+                return RedirectToAction("AccessDenied", "Account");
+            }
             return View();
         }
 
@@ -62,6 +77,16 @@ namespace QuanLyTrungTam.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("CourseId,CourseName,Lecturer,StartDate,TuitionFee,MaxStudents")] Course course)
         {
+            if (!IsAdmin())
+            {
+                return RedirectToAction("AccessDenied", "Account");
+            }
+            bool nameExists = await _context.Courses.AnyAsync(s => s.CourseName == course.CourseName);
+            if (nameExists)
+            {
+                ModelState.AddModelError("CourseName", "Tên khoá học đã tồn tại. Vui lòng nhập tên khác.");
+                return View(course);
+            }
             if (ModelState.IsValid)
             {
                 // Bước 1: Thêm khóa học vào DB
@@ -93,6 +118,10 @@ namespace QuanLyTrungTam.Controllers
         // GET: Courses/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            if (!IsAdmin())
+            {
+                return RedirectToAction("AccessDenied", "Account");
+            }
             if (id == null)
             {
                 return NotFound();
@@ -114,6 +143,10 @@ namespace QuanLyTrungTam.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("CourseId,CourseName,Lecturer,StartDate,TuitionFee,MaxStudents")] Course course)
         {
+            if (!IsAdmin())
+            {
+                return RedirectToAction("AccessDenied", "Account");
+            }
             if (id != course.CourseId)
             {
                 return NotFound();
@@ -145,6 +178,10 @@ namespace QuanLyTrungTam.Controllers
         // GET: Courses/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+            if (!IsAdmin())
+            {
+                return RedirectToAction("AccessDenied", "Account");
+            }
             if (id == null)
             {
                 return NotFound();
@@ -165,6 +202,10 @@ namespace QuanLyTrungTam.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            if (!IsAdmin())
+            {
+                return RedirectToAction("AccessDenied", "Account");
+            }
             var course = await _context.Courses.FindAsync(id);
             if (course != null)
             {
