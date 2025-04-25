@@ -20,15 +20,22 @@ namespace QuanLyTrungTam.Controllers
         {
             _context = context;
         }
-
+        private bool IsAdmin()
+        {
+            var userRole = HttpContext.Session.GetInt32("Role");
+            return userRole == 1;
+        }
         // GET: Students
         public async Task<IActionResult> Index()
         {
+            if (!IsAdmin())
+            {
+                return RedirectToAction("AccessDenied", "Account");
+            }
             var students = _context.Students
                 .Where(s => s.Role == 0)
                 .ToList();
             return View(students);
-            // return View(await _context.Students.ToListAsync());
         }
 
         // GET: Students/Details/5
@@ -60,6 +67,10 @@ namespace QuanLyTrungTam.Controllers
         // GET: Students/Create
         public IActionResult Create()
         {
+            if (!IsAdmin())
+            {
+                return RedirectToAction("AccessDenied", "Account");
+            }
             return View();
         }
 
@@ -68,7 +79,10 @@ namespace QuanLyTrungTam.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("StudentId,FullName,DateOfBirth,PhoneNumber,Email,Username,Password")] Student student)
         {
-            // Kiểm tra tên đăng nhập đã tồn tại
+            if (!IsAdmin())
+            {
+                return RedirectToAction("AccessDenied", "Account");
+            }
             bool usernameExists = await _context.Students.AnyAsync(s => s.Username == student.Username);
             bool emailExists = await _context.Students.AnyAsync(s => s.Email == student.Email);
             if (usernameExists)
@@ -101,7 +115,7 @@ namespace QuanLyTrungTam.Controllers
 
             var student = await _context.Students
                 .Include(s => s.Enrollments)
-                    .ThenInclude(e => e.Course)  // Đảm bảo load thông tin khóa học qua Enrollments
+                    .ThenInclude(e => e.Course) 
                 .FirstOrDefaultAsync(s => s.StudentId == id);
 
             if (student == null)
@@ -110,7 +124,7 @@ namespace QuanLyTrungTam.Controllers
             }
 
             var courses = student.Enrollments
-                .Select(e => e.Course) // Lấy các khóa học mà học viên đã đăng ký
+                .Select(e => e.Course) 
                 .ToList();
 
             var viewModel = new StudentDetailsViewModel
@@ -119,32 +133,8 @@ namespace QuanLyTrungTam.Controllers
                 Courses = courses
             };
 
-            return View(viewModel); // Trả ViewModel vào View
-            // // Lấy vai trò từ Session
-            // var role = HttpContext.Session.GetInt32("Role");
-
-            // if (role == 1)
-            // {
-            //     var courses = student.Enrollments
-            //         .Select(e => e.Course)
-            //         .ToList();
-
-            //     var viewModel = new StudentDetailsViewModel
-            //     {
-            //         Student = student,
-            //         Courses = courses
-            //     };
-
-            //     return View(viewModel);
-            // }
-            // else
-            // {
-            //     // Chuyển sang action Details (hoặc trang cá nhân student)
-            //     return RedirectToAction("Details", new { id = student.StudentId });
-            // }
+            return View(viewModel); 
         }
-
-
 
         // POST: Students/Edit/5
         [HttpPost]
@@ -174,8 +164,6 @@ namespace QuanLyTrungTam.Controllers
                         throw;
                     }
                 }
-                // return RedirectToAction(nameof(Index));
-                // 🔁 Điều hướng theo vai trò
                 var role = HttpContext.Session.GetInt32("Role");
 
                 if (role == 1)
@@ -193,6 +181,10 @@ namespace QuanLyTrungTam.Controllers
         // GET: Students/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+            if (!IsAdmin())
+            {
+                return RedirectToAction("AccessDenied", "Account");
+            }
             if (id == null)
             {
                 return NotFound();

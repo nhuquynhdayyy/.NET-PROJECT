@@ -20,7 +20,6 @@ namespace QuanLyTrungTam.Controllers
             _context = context;
         }
 
-        // Hàm kiểm tra quyền Admin từ Session
         private bool IsAdmin()
         {
             var userRole = HttpContext.Session.GetInt32("Role");
@@ -34,8 +33,8 @@ namespace QuanLyTrungTam.Controllers
             {
                 return RedirectToAction("AccessDenied", "Account");
             }
-            var courses = await _context.Courses
-                .Include(c => c.Enrollments) // 👈 Thêm dòng này
+            var courses = await _context.Courses //xử lý bất đồng bộ
+                .Include(c => c.Enrollments) 
                 .ToListAsync();
 
             return View(courses);
@@ -81,35 +80,20 @@ namespace QuanLyTrungTam.Controllers
             {
                 return RedirectToAction("AccessDenied", "Account");
             }
-            bool nameExists = await _context.Courses.AnyAsync(s => s.CourseName == course.CourseName);
-            if (nameExists)
-            {
-                ModelState.AddModelError("CourseName", "Tên khoá học đã tồn tại. Vui lòng nhập tên khác.");
-                return View(course);
-            }
+            // bool nameExists = await _context.Courses.AnyAsync(s => s.CourseName == course.CourseName);
+            // if (nameExists)
+            // {
+            //     ModelState.AddModelError("CourseName", "Tên khoá học đã tồn tại. Vui lòng nhập tên khác.");
+            //     return View(course);
+            // }
             if (ModelState.IsValid)
             {
-                // Bước 1: Thêm khóa học vào DB
                 _context.Add(course);
-                await _context.SaveChangesAsync(); // CourseId được sinh ra tại đây
-
-                // Bước 2: Cập nhật đường dẫn ảnh theo CourseId
-                // course.ImageUrl = $"/images/course-{course.CourseId}.jpg";
+                await _context.SaveChangesAsync(); 
                 course.ImageUrl = $"/images/course-{course.CourseId}.jpg";
-
-
-                // Bước 3: Cập nhật lại bản ghi
                 _context.Update(course);
                 await _context.SaveChangesAsync();
-
                 return RedirectToAction(nameof(Index));
-            }
-            else
-            {
-                foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
-                {
-                    Console.WriteLine("Validation Error: " + error.ErrorMessage);
-                }
             }
             return View(course);
         }
@@ -159,7 +143,7 @@ namespace QuanLyTrungTam.Controllers
                     _context.Update(course);
                     await _context.SaveChangesAsync();
                 }
-                catch (DbUpdateConcurrencyException)
+                catch (DbUpdateConcurrencyException) //lỗi cập nhật đồng thời
                 {
                     if (!CourseExists(course.CourseId))
                     {
@@ -198,7 +182,7 @@ namespace QuanLyTrungTam.Controllers
         }
 
         // POST: Courses/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost, ActionName("Delete")] //giữ route là Delete
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {

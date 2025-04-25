@@ -1,57 +1,3 @@
-@* @model QuanLyTrungTam.Models.Course
-
-@{
-    ViewData["Title"] = "Edit";
-}
-
-<h1>Edit</h1>
-
-<h4>Course</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="CourseId" />
-            <div class="form-group">
-                <label asp-for="CourseName" class="control-label"></label>
-                <input asp-for="CourseName" class="form-control" />
-                <span asp-validation-for="CourseName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Lecturer" class="control-label"></label>
-                <input asp-for="Lecturer" class="form-control" />
-                <span asp-validation-for="Lecturer" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="StartDate" class="control-label"></label>
-                <input asp-for="StartDate" class="form-control" />
-                <span asp-validation-for="StartDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TuitionFee" class="control-label"></label>
-                <input asp-for="TuitionFee" class="form-control" />
-                <span asp-validation-for="TuitionFee" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MaxStudents" class="control-label"></label>
-                <input asp-for="MaxStudents" class="form-control" />
-                <span asp-validation-for="MaxStudents" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-} *@
 @model QuanLyTrungTam.Models.Course
 
 @{
@@ -123,16 +69,6 @@
                             </div>
                         </div>
                         
-                        @* <div class="row mb-3">
-                            <div class="col-md-12">
-                                <div class="form-floating mb-3">
-                                    <input name="ImageUrl" class="form-control" placeholder="URL hình ảnh" value="@(Model.ImageUrl ?? "")" />
-                                    <label for="ImageUrl">URL hình ảnh (tùy chọn)</label>
-                                </div>
-                                <small class="text-muted">Để trống để sử dụng hình ảnh mặc định</small>
-                            </div>
-                        </div> *@
-                        
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
                             <a asp-action="Index" class="btn btn-outline-secondary me-md-2">
                                 <i class="bi bi-x-circle me-2"></i>Hủy
@@ -152,8 +88,6 @@
                 </div>
                 <div class="card-body">
                     <div class="text-center mb-3">
-                        @* <img src="/images/course-@(Model.CourseId).jpg" class="img-fluid rounded mb-3" alt="@Model.CourseName" 
-                                 style="height: 150px; object-fit: cover;"> *@
                         @{
                             var imagePath = $"/images/course-{Model.CourseId}.jpg";
                             var physicalPath = System.IO.Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", $"images/course-{Model.CourseId}.jpg");

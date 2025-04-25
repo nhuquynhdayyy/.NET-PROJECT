@@ -6,7 +6,7 @@ using System.Security.Cryptography;
 using System.Text;
 using QuanLyTrungTam.Controllers;
 
-namespace TrainingCenterApp.Controllers
+namespace QuanLyTrungTam.Controllers
 {
     public class AccountController : BaseController
     {
@@ -30,21 +30,11 @@ namespace TrainingCenterApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                // // Check if username exists
-                // var exists = _context.Students.Any(s => s.Username == model.Username);
-                // if (exists)
-                // {
-                //     ModelState.AddModelError("Username", "Username already exists.");
-                //     return View(model);
-                // }
-                // Kiểm tra username đã tồn tại chưa
                 if (_context.Students.Any(s => s.Username == model.Username))
                 {
                     ModelState.AddModelError("Username", "Tên đăng nhập đã được sử dụng.");
                     return View(model);
                 }
-
-                // Kiểm tra email đã tồn tại chưa
                 if (_context.Students.Any(s => s.Email == model.Email))
                 {
                     ModelState.AddModelError("Email", "Email đã được sử dụng.");
@@ -59,7 +49,7 @@ namespace TrainingCenterApp.Controllers
                     Email = model.Email,
                     PhoneNumber = model.PhoneNumber,
                     DateOfBirth = model.DateOfBirth,
-                    Role = 0 // Default role
+                    Role = 0 
                 };
 
                 _context.Students.Add(student);
@@ -85,7 +75,6 @@ namespace TrainingCenterApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Tìm theo username hoặc email
                 var user = _context.Students.FirstOrDefault(s =>
                     (s.Username == model.Username || s.Email == model.Username) &&
                     s.Password == model.Password);

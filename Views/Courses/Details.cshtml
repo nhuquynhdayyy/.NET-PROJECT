@@ -1,51 +1,3 @@
-@* @model QuanLyTrungTam.Models.Course
-
-@{
-    ViewData["Title"] = "Details";
-}
-
-<h1>Details</h1>
-
-<div>
-    <h4>Course</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CourseName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CourseName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Lecturer)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Lecturer)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.StartDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.StartDate)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TuitionFee)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TuitionFee)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MaxStudents)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MaxStudents)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.CourseId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div> *@
 @model QuanLyTrungTam.Models.Course
 
 @{
@@ -75,8 +27,6 @@
                 </div>
                 <div class="card-body">
                     <div class="text-center mb-4">
-                        @* <img src="/images/course-@(Model.CourseId).jpg" class="img-fluid rounded mb-3" alt="@Model.CourseName" 
-                                 style="height: 200px; object-fit: cover;"> *@
                         @{
                             var imagePath = $"/images/course-{Model.CourseId}.jpg";
                             var physicalPath = System.IO.Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", $"images/course-{Model.CourseId}.jpg");

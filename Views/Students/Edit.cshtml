@@ -85,9 +85,16 @@
                         </div>
                         
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
-                            <a asp-action="Index" class="btn btn-outline-secondary me-md-2">
-                                <i class="bi bi-x-circle me-2"></i>Hủy
-                            </a>
+                            @if (currentUserRole == 1) {
+                                <a asp-action="Index" class="btn btn-outline-secondary me-md-2">
+                                    <i class="bi bi-x-circle me-2"></i>Hủy
+                                </a>
+                            } else {
+                                <a asp-action="Details" asp-route-id="@Model.Student.StudentId" class="btn btn-outline-secondary me-md-2">
+                                    <i class="bi bi-x-circle me-2"></i>Hủy
+                                </a>
+                            }
+                            
                             <button type="submit" class="btn btn-primary" id="submitButton">
                                 <i class="bi bi-check-circle me-2"></i>Lưu thay đổi
                             </button>

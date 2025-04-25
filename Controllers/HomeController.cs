@@ -31,7 +31,7 @@ public class HomeController : BaseController
     {
         var courses = _context.Courses
             .Include(c => c.Enrollments)
-                .ThenInclude(e => e.Student) // đảm bảo e.Student không null
+                .ThenInclude(e => e.Student) 
             .ToList();
         return View("CoursesForStudent", courses); 
     }

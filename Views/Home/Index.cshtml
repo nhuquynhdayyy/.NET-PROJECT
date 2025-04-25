@@ -1,26 +1,21 @@
 ﻿@{
-    // Đặt tiêu đề cho trang này, giá trị này sẽ được hiển thị ở thẻ <title> trong _Layout.cshtml
     ViewData["Title"] = "Trang Chủ";
 }
 
-<!-- Hero Section -->
 <div class="text-center my-5">
     <h1 class="display-4 fw-bold">Chào mừng đến với Trung tâm đào tạo</h1>
     <p class="lead mt-3">Khám phá các khóa học chất lượng của chúng tôi.</p>
     <hr class="my-4">
     
-    <!-- Các nút hành động -->
     <div class="d-flex justify-content-center gap-3 mb-4">
         <a class="btn btn-primary" asp-controller="Home" asp-action="CoursesForStudent">
             <i class="bi bi-journal-text me-2"></i>Xem khóa học
         </a>
     </div>
     
-    @* Thêm nội dung khác cho trang chủ tại đây *@
-    <p>Tìm hiểu thêm về <a href="https://learn.microsoft.com/aspnet/core">xây dựng ứng dụng Web với ASP.NET Core</a>.</p>
+    @* <p>Tìm hiểu thêm về <a href="https://learn.microsoft.com/aspnet/core">xây dựng ứng dụng Web với ASP.NET Core</a>.</p> *@
 </div>
 
-<!-- Các tính năng nổi bật -->
 <div class="row mt-5">
     <div class="col-md-4 mb-4">
         <div class="card h-100 shadow-sm">
@@ -51,7 +46,6 @@
     </div>
 </div>
 
-<!-- Đăng ký tư vấn -->
 @{
     var username = Context.Session.GetString("Username");
 }
@@ -73,8 +67,6 @@
     </section>
 }
 
-
-@* Nếu trang này cần các file JavaScript riêng, bạn có thể thêm chúng vào đây *@
 @section Scripts {
     <script>
         // Thêm hiệu ứng hover cho các card

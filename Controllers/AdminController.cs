@@ -18,7 +18,6 @@ namespace QuanLyTrungTam.Controllers
             _context = context;
         }
 
-        // Chỉ Admin mới được truy cập
         public IActionResult Dashboard()
         {
             var role = HttpContext.Session.GetInt32("Role");
@@ -40,13 +39,11 @@ namespace QuanLyTrungTam.Controllers
 
         public IActionResult RevenueReport(DateTime? startDate, DateTime? endDate)
         {
-            // Kiểm tra quyền Admin từ Session
             if (HttpContext.Session.GetInt32("Role") != 1)
                 return RedirectToAction("AccessDenied", "Account");
 
-            var enrollments = _context.Enrollments.AsQueryable();
+            var enrollments = _context.Enrollments.AsQueryable(); //áp dụng các phép toán truy vấn động
 
-            // Lọc theo ngày nếu có
             if (startDate.HasValue)
                 enrollments = enrollments.Where(e => e.RegisteredAt >= startDate.Value);
             if (endDate.HasValue)
@@ -62,8 +59,8 @@ namespace QuanLyTrungTam.Controllers
                     Revenue = g.Count() * g.First().Course.TuitionFee
                 })
                 .ToList();
-
-            ViewBag.StartDate = startDate;
+            
+            ViewBag.StartDate = startDate; //thộc tính động
             ViewBag.EndDate = endDate;
 
             return View(data);
@@ -79,13 +76,13 @@ namespace QuanLyTrungTam.Controllers
             var course = _context.Courses.FirstOrDefault(c => c.CourseId == courseId);
             if (course == null)
             {
-                return NotFound(); // hoặc Redirect với thông báo
+                return NotFound(); 
             }
 
             var students = _context.Enrollments
                 .Include(e => e.Student)
                 .Where(e => e.CourseId == courseId)
-                .ToList() // Lấy ra khỏi DB trước (chuyển sang LINQ to Objects)
+                .ToList() //load từ database vào bộ nhớ để hỗ trợ index
                 .Select((e, index) => new StudentInCourseViewModel
                 {
                     STT = index + 1,
@@ -98,7 +95,7 @@ namespace QuanLyTrungTam.Controllers
 
             ViewBag.Course = course;
             ViewBag.CourseId = courseId;
-            return View(students); // Trỏ tới Views/Admin/ViewStudents.cshtml
+            return View(students); 
         }
         public IActionResult CourseEnrollments()
         {

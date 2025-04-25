@@ -18,7 +18,6 @@ namespace QuanLyTrungTam.Controllers
             _context = context;
         }
 
-        // Đăng ký khóa học
         [HttpPost]
         public IActionResult Register(int courseId)
         {
@@ -26,21 +25,18 @@ namespace QuanLyTrungTam.Controllers
 
             if (studentId == null)
             {
-                // Chưa đăng nhập => chuyển hướng sang trang đăng nhập
                 return RedirectToAction("Login", "Account");
             }
 
-            // Kiểm tra xem học viên đã đăng ký khóa học này chưa
             var existingEnrollment = _context.Enrollments
                 .FirstOrDefault(e => e.StudentId == studentId && e.CourseId == courseId);
 
             if (existingEnrollment != null)
             {
-                TempData["Message"] = "You have already registered for this course.";
+                TempData["Message"] = "Bạn đã đăng ký khoá học này rồi.";
                 return RedirectToAction("MyCourses", "Students");
             }
 
-            // Kiểm tra số lượng đăng ký
             int enrolledCount = _context.Enrollments
                 .Count(e => e.CourseId == courseId);
 
@@ -53,17 +49,16 @@ namespace QuanLyTrungTam.Controllers
 
             // if (course.StartDate <= DateTime.Today)
             // {
-            //     TempData["Message"] = "This course has already started. Registration is closed.";
+            //     TempData["Message"] = "Khóa học này đã bắt đầu. Đăng ký đã đóng.";
             //     return RedirectToAction("MyCourses", "Students");
             // }
 
             if (enrolledCount >= course.MaxStudents)
             {
-                TempData["Message"] = "This course has reached the maximum number of students.";
+                TempData["Message"] = "Khóa học này đã đạt số lượng học viên tối đa.";
                 return RedirectToAction("MyCourses", "Students");
             }
 
-            // Tạo bản ghi mới
             var enrollment = new Enrollment
             {
                 StudentId = studentId.Value,
@@ -74,11 +69,9 @@ namespace QuanLyTrungTam.Controllers
             _context.Enrollments.Add(enrollment);
             _context.SaveChanges();
 
-            TempData["Message"] = "Successfully registered!";
+            TempData["Message"] = "Đăng ký thành công!";
             return RedirectToAction("MyCourses", "Students");
         }
-
-        // Hủy đăng ký (nếu chưa khai giảng)
         [HttpPost]
         public IActionResult Cancel(int enrollmentId)
         {
@@ -100,14 +93,14 @@ namespace QuanLyTrungTam.Controllers
 
             if (enrollment.Course.StartDate <= DateTime.Now)
             {
-                TempData["Message"] = "Cannot cancel enrollment after the course has started.";
+                TempData["Message"] = "Không thể hủy đăng ký sau khi khóa học đã bắt đầu.";
                 return RedirectToAction("MyCourses", "Students");
             }
 
             _context.Enrollments.Remove(enrollment);
             _context.SaveChanges();
 
-            TempData["Message"] = "Enrollment cancelled.";
+            TempData["Message"] = "Đăng ký đã bị hủy.";
             return RedirectToAction("MyCourses", "Students");
         }
     }
